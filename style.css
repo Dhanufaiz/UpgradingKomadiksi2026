@@ -1,0 +1,82 @@
+
+/* Palet Warna */
+:root {
+    --dark-green: #195042;
+    --gold-accent: #908459;
+    --soft-green: #99A499;
+    --bg-cream: #FDFBF7;
+    /* Font Stack yang mirip The Seasons */
+    --font-elegant: "Didot", "Bodoni MT", "Cochin", "Baskerville", "Georgia", "Times New Roman", serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-cream);
+    color: var(--dark-green);
+    font-family: 'Segoe UI', Arial, sans-serif; /* Font standar untuk teks isi */
+}
+
+/* HEADER STYLE */
+.navbar {
+    background-color: var(--dark-green);
+    color: #FFFFFF;
+    padding: 5px 5%;
+    border-bottom: 3px solid var(--gold-accent);
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
+.header-container {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logos {
+    display: flex;
+    gap: 10px;
+}
+
+.img-logo {
+    height: 50px; /* Sesuaikan ukuran logo */
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
+    border-radius: 50%;
+    background-color: var(--dark-green);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-elegant);;
+}
+
+.label {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+.kabinet-name {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.motto-section {
+    text-align: right;
+    font-family: var(--font-elegant);
+    font-size: 14px;
+    line-height: 0.5;
+    border-left: 1px solid rgba(255,255,255,0.3);
+    padding-left: 20px;
+}
