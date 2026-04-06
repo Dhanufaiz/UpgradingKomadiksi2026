@@ -19,7 +19,7 @@ body {
 
 /* HEADER STYLE */
 .navbar {
-    background-color: var(--dark-green);
+    background-color: var(--gold-accent);
     color: #FFFFFF;
     padding: 10px 5%;
     border-bottom: 3px solid var(--gold-accent);
