@@ -1,0 +1,19 @@
+{
+    "index.html": {
+        "tentang":{
+            "pendahuluan":" ",
+            "Tema":" ",
+            "Tujuan":" ",
+            "Manfaat":" ",
+            "waktu dan tempat":" ",  
+            "Harga tiket":["htm", "pembayaran", "konfirmasi pembayaran"]
+        },
+        "rundown":[],
+        "tata tertib":[],
+        "perlengkapan":["pribadi", "bidang"],
+        "pentas seni":[],
+        "kontak":[],
+        "penutup":[],
+        "footer":[]
+    }
+}
