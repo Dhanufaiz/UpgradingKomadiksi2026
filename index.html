@@ -9,27 +9,58 @@
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <header class="navbar">
-        <div class="header-container">
-            <div class="brand-section">
-                <div class="logos">
-                    <img src="img/LOGO KOMADIKSI SMART.jpeg" alt="UNS" class="img-logo">
-                    <img src="img/SAKHYA PNG.png" alt="Sakhya Abhipraya" class="img-logo">
+        <div>
+            <!-- header -->
+            <div class="header-container">
+                <div class="brand-section">
+                    <div class="logos">
+                        <img src="img/LOGO KOMADIKSI SMART.jpeg" alt="UNS" class="img-logo">
+                        <img src="img/SAKHYA PNG.png" alt="Sakhya Abhipraya" class="img-logo">
+                    </div>
+                    <div class="brand-text">
+                        <span class="label">KABINET</span>
+                        <span class="kabinet-name">SAKHYA ABHIPRAYA</span>
+                    </div>
                 </div>
-                <div class="brand-text">
-                    <span class="label">KABINET</span>
-                    <span class="kabinet-name">SAKHYA ABHIPRAYA</span>
+                
+                <div class="motto-section">
+                    <p>BERPRESTASI, MENGABDI</p>
+                    <p>UNTUK NEGERI</p>
                 </div>
             </div>
-            
-            <div class="motto-section">
-                <p>BERPRESTASI, MENGABDI</p>
-                <p>UNTUK NEGERI</p>
-            </div>
+            <!-- menu -->
+            <nav class="sub-menu">
+                <div class="menu-container">
+                    <a href="#main-content" class="menu-item">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="#tentang" class="menu-item">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Tentang</span>
+                    </a>
+                    <a href="#pentas-seni" class="menu-item">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                        <span>Slot Pensi</span>
+                    </a>
+                    <a href="#whatsapp-info" class="menu-item">
+                        <i class="fa-solid fa-address-book"></i>
+                        <span>Kontak</span>
+                    </a>
+                    <a href="https://wa.me/your-number" class="menu-item">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Bantuan</span>
+                    </a>
+                </div>
+            </nav>
         </div>
     </header>
 
+    <!-- MAIN -->
     <main class="main-content">
+        <!-- HERO -->
         <section class="hero-section">
             <img src="img/foto.jpg" alt="Background" class="hero-bg"> 
             <div class="hero-overlay"></div>
@@ -38,13 +69,97 @@
             </div>
         </section>
 
+        <!-- tentang -->
         <section class="content-section">
             <div class="text-block">
-                <p>ni nanti isinya jarkoman yah.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur labore dolorum, esse possimus dolorem doloribus officia pariatur reprehenderit et natus aliquam! Exercitationem magnam adipisci aspernatur provident est quos ab. Iure.</p>
+            </div>
+        </section>
+        <!-- RUNDOWN -->
+         <section id="rundown" class="rundown-section reveal">
+            <div class="section-title">
+                <h2>RUNDOWN UPGRADING</h2>
+                <div class="underline"></div>
+            </div>
+
+            <div class="timeline-wrapper">
+                <ul class="timeline-list">
+                    <li class="timeline-item reveal-left delay-1">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="time-tag">07:30 - 08:00</span>
+                            <h3>Check-in & Morning Vibe</h3>
+                            <p>Presensi peserta, pembagian atribut, dan snack ringan di lobi.</p>
+                        </div>
+                    </li>
+
+                    <li class="timeline-item reveal-left delay-2">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="time-tag">08:00 - 09:15</span>
+                            <h3>Grand Opening</h3>
+                            <p>Pembukaan oleh MC, sambutan Ketua Komadiksi, dan pengenalan visi Sakhya Abhipraya.</p>
+                        </div>
+                    </li>
+
+                    <li class="timeline-item active-slot reveal-left delay-3">
+                        <div class="timeline-dot pulse"></div>
+                        <div class="timeline-content">
+                            <span class="time-tag">09:15 - 11:30</span>
+                            <h3>Internal Strengthening</h3>
+                            <p>Sesi upgrading materi kepemimpinan dan bonding antar divisi kabinet.</p>
+                        </div>
+                    </li>
+
+                    <li class="timeline-item reveal-left delay-1">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="time-tag">13:00 - 15:00</span>
+                            <h3>Pentas Seni (PENSI)</h3>
+                            <p>Inilah saatnya! Penampilan bakat dari slot-slot yang sudah dipilih sebelumnya.</p>
+                        </div>
+                    </li>
+
+                    <li class="timeline-item reveal-left delay-2">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="time-tag">15:00 - Selesai</span>
+                            <h3>Closing & Awarding</h3>
+                            <p>Pengumuman penampilan terbaik dan sesi foto bersama seluruh anggota.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
 
-        <section class="bento-grid">
+        <!-- tata tertib -->
+        <section class="content-section">
+            <div class="text-block">
+                <h2>Tata Tertib Pensi Upgrading</h2>
+                <ul>
+                    <li>Peserta wajib hadir tepat waktu sesuai jadwal yang telah ditentukan.</li>
+                    <li>Setiap slot pensi harus mematuhi tema dan durasi yang telah disepakati.</li>
+                    <li>Dilarang membawa makanan atau minuman ke area pentas seni.</li>
+                    <li>Peserta diharapkan menjaga kebersihan dan ketertiban selama acara berlangsung.</li>
+                    <li>Keputusan juri bersifat final dan tidak dapat diganggu gugat.</li>
+                </ul>
+            </div>
+        </section>
+        <!-- perlengkapan -->
+        <section class="content-section">
+            <div class="text-block">
+                <h2>Perlengkapan yang Dibutuhkan</h2>
+                <ul>
+                    <li>Pakaian seragam Komadiksi untuk penampilan di pentas seni.</li>
+                    <li>Perlengkapan alat musik atau properti sesuai kebutuhan penampilan.</li>
+                    <li>Snack dan minuman ringan untuk konsumsi selama acara.</li>
+                    <li>Perlengkapan pribadi seperti hand sanitizer dan masker (jika diperlukan).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SLOT PENSI -->
+        <section class="pentas-seni">
             <div class="bento-item side-slot">
                 <div class="item-info">
                     <h3>GENRE PENSI 1</h3>
@@ -66,13 +181,36 @@
                 </div>
                 <a class="btn-action-small" href="https://forms.gle/yYLZDm25BPx7HSjb8" target="_blank">PILIH</a>
             </div>
-        </section>
-
-        <section class="whatsapp-info">
-            <div class="info-card">
-                <p>Selamat memilih slot pensi yang kalian inginkan, jangan lupa untuk selalu update informasi terbaru tentang pensi upgrading di grup WhatsApp yaa :3</p>
+            </div>
+            <div class="bento-item side-slot">
+                <div class="item-info">
+                    <h3>GENRE PENSI 4</h3>
+                    <h4>SLOT 04</h4>
+                </div>
+                <a class="btn-action-small" href="https://forms.gle/yYLZDm25BPx7HSjb8" target="_blank">PILIH</a>
             </div>
         </section>
+
+        <!-- contact person -->
+        <section class="whatsapp-info">
+            <div class="info-card">
+                <h3>Kontak Person</h3>
+                <p>Jika ada pertanyaan atau membutuhkan bantuan terkait acara, silakan hubungi kontak person berikut:</p>
+                <ul>
+                    <li><strong>Nama:</strong> [Nama Kontak Person 1]</li>
+                    <li><strong>Nomor WhatsApp:</strong> +62 [Nomor WA 1]</li>
+                    <li><strong>Email:</strong> [Email Kontak Person 1]</li>
+                </ul>    
+            </div>
+        </section>
+
+        <!-- penutup -->
+         <section>
+            <div class="closing-section">
+                <h2>Terima Kasih atas Partisipasi Anda!</h2>
+                <p>Kami sangat menghargai kehadiran dan antusiasme Anda dalam acara Upgrading Komadiksi Smart 2026. Semoga acara ini memberikan pengalaman yang berharga dan mempererat tali persaudaraan di antara kita semua. Sampai jumpa di acara selanjutnya!</p>
+            </div>
+         </section>
     </main>
 
     <footer class="fatisda-footer">
@@ -88,9 +226,6 @@
                         <h4>Email</h4>
                         <p>komadiksismart@uns.ac.id</p>
                     </div>
-                    <div class="contact-item">
-                        <h4>Telepon</h4>
-                        <p>+62 </p>
                     </div>
                     <div class="contact-item full-width">
                         <h4>Alamat</h4>
@@ -107,7 +242,7 @@
         <div class="footer-bottom">
             <div class="copyright">
                 <p><i>Copyright © 2026 - KOMADIKSI SMART UNS</i></p>
-            </div>S
+            </div>
             <div class="social-links">
                 <a href="https://www.instagram.com/komadiksiuns/" class="social-btn">Instagram <i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/company/komadiksi-smart-uns" class="social-btn">LinkedIn <i class="fab fa-linkedin"></i></a>
