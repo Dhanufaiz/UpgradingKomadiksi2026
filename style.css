@@ -53,7 +53,7 @@ body {
     height: 45px;
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
     border-radius: 50%;
-    background-color: var(--dark-green);
+    background-color: var(--white);
 }
 
 .brand-text {
@@ -93,7 +93,7 @@ body {
 /* HERO SECTION */
 .hero-section {
   height: 350px; 
-  position: relative;
+  position:relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -175,7 +175,7 @@ body {
     max-width: 1200px;
     margin: 40px auto 50px; 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
     padding: 0 5%;
     z-index: 10;
@@ -184,7 +184,7 @@ body {
 
 .bento-item {
     background: white;
-    padding: 30px;
+    padding: 50px;
     border-radius: 24px;
     display: flex;
     flex-direction: column;
