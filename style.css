@@ -25,6 +25,25 @@ body { background-color: var(--dark); color: var(--white); font-family: 'Plus Ja
 .brand-text .kabinet-name { font-weight: 800; color: var(--gold); }
 .motto-section { text-align: right; font-size: 0.7rem; border-left: 1px solid var(--accent-light); padding-left: 15px; opacity: 0.8; }
 
+/* --- RESPONSIVE FIX UNTUK MOBILE --- */
+@media (max-width: 768px) {
+    /* 1. Perkecil Padding Utama Navbar */
+    .header-container {padding: 0.5rem 4%; /* Dari 1rem menjadi 0.5rem */gap: 10px;}
+    /* 2. Perkecil Ukuran Logo */
+    .img-logo {height: 30px; /* Dari 45px menjadi 30px */}
+    /* 3. Perkecil Ukuran Teks Branding */
+    .brand-text .label {font-size: 0.5rem; /* Teks "KABINET" diperkecil */letter-spacing: 1px;}
+    .brand-text .kabinet-name {font-size: 0.8rem; /* Nama kabinet diperkecil */}
+    /* 4. Sembunyikan Motto di HP (Opsional agar lebih bersih) */
+    /* Atau jika ingin tetap ada, perkecil ukurannya */
+    .motto-section {font-size: 0.55rem; padding-left: 10px;}
+    /* 5. Atur Sub-Menu (Chips) agar lebih rapat */
+    .sub-menu {padding: 5px 0;}
+    .menu-item {padding: 6px 12px;font-size: 0.75rem;}
+    /* 6. Atur Sticky Position agar pas */
+    .sub-menu {top: 55px; /* Sesuaikan dengan tinggi header baru yang lebih kecil */}
+}
+
 /* SUB-MENU (SCROLLABLE CHIPS) */
 .sub-menu { padding: 8px 0; border-bottom: 1px solid var(--glass-border); }
 .menu-container { justify-content: safe center; display: flex; gap: 10px; overflow-x: auto; padding: 0 5%; scrollbar-width: none; }
