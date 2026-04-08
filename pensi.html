@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Slot Pensi - Komadiksi 2026</title>
+    <link rel="stylesheet" href="css/style-pensi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <main class="pensi-page">
+        <header class="pensi-header reveal">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Kembali ke Booklet</a>
+            <div class="section-title">
+                <p class="label">PERFORMANCE REGISTRATION</p>
+                <h2>WAR SLOT PENSI</h2>
+                <div class="underline"></div>
+            </div>
+            <p class="pensi-desc">Silakan pilih slot penampilan untuk bidang Anda. <br> <strong>Satu slot hanya berlaku untuk satu pendaftar tercepat!</strong></p>
+        </header>
+
+        <section class="pentas-seni reveal">
+            <div class="bento-grid">
+                <div class="bento-item">
+                    <div class="icon-box"><i class="fa-solid fa-masks-theater"></i></div>
+                    <div class="item-info">
+                        <h4>SLOT 01</h4>
+                        <h3>DRAMA / TEATER</h3>
+                    </div>
+                    <p class="slot-status">Tersedia: 1 Kuota</p>
+                    <a class="btn-action-small" href="https://forms.gle/your-link-1" target="_blank">PILIH SLOT</a>
+                </div>
+
+                <div class="bento-item">
+                    <div class="icon-box"><i class="fa-solid fa-guitar"></i></div>
+                    <div class="item-info">
+                        <h4>SLOT 02</h4>
+                        <h3>AKUSTIK / BAND</h3>
+                    </div>
+                    <p class="slot-status">Tersedia: 1 Kuota</p>
+                    <a class="btn-action-small" href="https://forms.gle/your-link-2" target="_blank">PILIH SLOT</a>
+                </div>
+
+                <div class="bento-item">
+                    <div class="icon-box"><i class="fa-solid fa-person-rays"></i></div>
+                    <div class="item-info">
+                        <h4>SLOT 03</h4>
+                        <h3>TARI / DANCE / FLASHMOB</h3>
+                    </div>
+                    <p class="slot-status">Tersedia: 1 Kuota</p>
+                    <a class="btn-action-small" href="https://forms.gle/your-link-3" target="_blank">PILIH SLOT</a>
+                </div>
+
+                <div class="bento-item">
+                    <div class="icon-box"><i class="fa-solid fa-face-laugh-squint"></i></div>
+                    <div class="item-info">
+                        <h4>SLOT 04</h4>
+                        <h3>PARODI / STANDUP</h3>
+                    </div>
+                    <p class="slot-status">Tersedia: 1 Kuota</p>
+                    <a class="btn-action-small" href="https://forms.gle/your-link-4" target="_blank">PILIH SLOT</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="pensi-footer reveal">
+            <p><i class="fa-solid fa-circle-info"></i> Butuh bantuan teknis? Hubungi Divisi Acara.</p>
+        </footer>
+    </main>
+
+    <script>
+        // Animasi Reveal saat Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
