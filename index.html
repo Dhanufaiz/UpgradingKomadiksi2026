@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booklet Upgrading Komadiksi 2026</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
     <header class="navbar">
         <div class="header-container">
             <div class="brand-section">
@@ -81,14 +80,14 @@
                     <i class="fa-solid fa-map-location-dot gold-icon"></i>
                     <h3>Waktu & Tempat</h3>
                     <p>Sabtu, 18-19 April 2026<br>07:30 WIB - Selesai</p>
-                    <a href="#" class="btn-action-small">Rumah Revolusi Mental WCS</a>
+                    <a href="https://maps.app.goo.gl/DKRZ9A3sSgviP1bx6" class="btn-action-small">Rumah Revolusi Mental WCS</a>
                 </div>
                 <div class="info-card ticket-card full-width reveal">
                     <div class="ticket-content">
                         <div>
                             <h3>Harga Tiket</h3>
                             <p>Rp60.000 bagi yang mengikuti</p>
-                            <p>Rp50.000 bagi yang tidakmengikuti</p>
+                            <p>Rp50.000 bagi yang tidak mengikuti</p>
                         </div>
                         <a href="#" class="btn-action-small">BAYAR</a>
                     </div>
@@ -221,7 +220,7 @@
 
         <section id="pentas-seni" class="pentas-seni reveal">
             <div class="section-title">
-                <h2>WAR SLOT PENSI</h2>
+                <h2>PENTAS SENI</h2>
                 <div class="underline"></div>
             </div>
             <div class="bento-grid">
@@ -299,18 +298,70 @@
             </div>
         </div>
     </footer>
-
     <script>
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // 1. LOGIKA ANIMASI SCROLL (REVEAL)
+            const observerOptions = { 
+                threshold: 0.1,
+                rootMargin: "0px 0px -100px 0px" // Animasi muncul sedikit sebelum elemen benar-benar terlihat
+            };
 
-        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            // Menjalankan observasi pada elemen reveal
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+                observer.observe(el);
+            });
+
+
+            // 2. LOGIKA TOMBOL EXPAND RUNDOWN (LIHAT SELENGKAPNYA)
+            const btnToggle = document.getElementById('toggle-rundown');
+            const moreContent = document.getElementById('rundown-more');
+
+            if (btnToggle && moreContent) {
+                btnToggle.addEventListener('click', function() {
+                    // Menambah/menghapus class 'show' pada konten tersembunyi
+                    moreContent.classList.toggle('show');
+                    
+                    // Menambah/menghapus class 'active' pada tombol (untuk putar ikon panah)
+                    this.classList.toggle('active');
+                    
+                    // Mengubah teks tombol
+                    const btnText = this.querySelector('span');
+                    if (moreContent.classList.contains('show')) {
+                        btnText.textContent = "Tampilkan Sedikit";
+                    } else {
+                        btnText.textContent = "Lihat Selengkapnya";
+                    }
+                });
+            }
+
+            // 3. LOGIKA SMOOTH SCROLL UNTUK MENU ITEM
+            document.querySelectorAll('.menu-item').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+        });
     </script>
 </body>
 </html>
