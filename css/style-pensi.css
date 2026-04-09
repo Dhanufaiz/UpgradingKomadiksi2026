@@ -109,3 +109,104 @@ body {
 @media (max-width: 600px) {
     .section-title h2 { font-size: 1.8rem; }
 }
+
+/* Pastikan variabel warna sudah ada di bagian atas */
+:root {
+    --primary: #195042;
+    --gold: #91855a;
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+.pensi-section {
+    margin-bottom: 30px;
+}
+
+.card-header {
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.no-hover:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.pensi-schedule .s-item {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem;
+}
+
+.pensi-schedule span {
+    min-width: 110px;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.genre-tag {
+    background: var(--primary);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid var(--glass-border);
+}
+
+.example-box {
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border-left: 3px solid var(--gold);
+}
+
+.deadline {
+    color: #ff4d4d;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.forbidden-box {
+    border: 1px solid rgba(231, 76, 60, 0.3) !important;
+}
+
+.forbidden-tags {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.forbidden-tags span {
+    background: rgba(231, 76, 60, 0.1);
+    color: #ff4d4d;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 0.8rem;
+}
+
+.highlight-gold {
+    border: 1px solid var(--gold) !important;
+}
+
+@media (max-width: 600px) {
+    .pensi-schedule .s-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
