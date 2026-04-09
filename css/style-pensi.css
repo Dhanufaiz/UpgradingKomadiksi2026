@@ -11,6 +11,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 body { 
     background-color: var(--dark); 
     color: var(--white); 
@@ -18,33 +19,44 @@ body {
     line-height: 1.6;
     display: flex;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 60px 20px; /* Padding body ditambah agar lega */
 }
 
 .pensi-page { max-width: 1000px; width: 100%; }
 
 /* HEADER */
-.pensi-header { text-align: center; margin-bottom: 50px; }
+.pensi-header { text-align: center; margin-bottom: 60px; }
 .back-btn { 
     display: inline-block; 
     color: var(--accent-light); 
     text-decoration: none; 
-    font-size: 0.8rem; 
+    font-size: 0.85rem; 
     margin-bottom: 30px; 
     transition: 0.3s;
+    font-weight: 600;
 }
-.back-btn:hover { color: var(--gold); }
+.back-btn:hover { color: var(--gold); transform: translateX(-5px); }
 
-.section-title .label { letter-spacing: 3px; font-weight: 800; color: var(--gold); font-size: 0.7rem; }
-.section-title h2 { font-size: 2.5rem; font-weight: 800; margin: 10px 0; }
+.section-title h2 { font-size: 2.5rem; font-weight: 800; margin: 15px 0; letter-spacing: -1px; }
 .underline { width: 60px; height: 4px; background: var(--gold); margin: 0 auto; border-radius: 2px; }
-.pensi-desc { margin-top: 20px; opacity: 0.8; font-size: 0.95rem; }
+
+/* SECTIONS */
+.pensi-section {
+    margin-bottom: 50px; /* Jarak antar section ditingkatkan agar tidak rapat */
+}
+
+.section-desc {
+    margin-bottom: 30px; 
+    font-size: 0.95rem; 
+    opacity: 0.8; 
+    text-align: center;
+}
 
 /* BENTO GRID */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px; /* Jarak antar kotak ditingkatkan */
 }
 
 .bento-item {
@@ -52,161 +64,99 @@ body {
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
-    padding: 35px;
+    padding: 45px 35px; /* Padding dalam diperbesar agar teks bernapas */
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 220px;
 }
 
-.bento-item:hover {
+.bento-item:not(.no-hover):hover {
     transform: translateY(-12px);
     border-color: var(--gold);
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-.icon-box {
-    font-size: 2.5rem;
-    color: var(--gold);
-    margin-bottom: 20px;
+/* SIDE SLOT ITEMS */
+.side-slot-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
 }
 
-.item-info h4 { font-size: 0.8rem; color: var(--accent-light); letter-spacing: 1px; }
-.item-info h3 { font-size: 1.4rem; font-weight: 800; margin: 5px 0 15px; }
-
-.slot-status {
-    font-size: 0.75rem;
-    background: rgba(25, 80, 66, 0.5);
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 50px;
-    margin-bottom: 20px;
+.side-slot-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--gold);
+    transform: translateY(-8px);
 }
 
+.item-info-row h3 { font-size: 1.1rem; font-weight: 800; }
+.item-info-row h4 { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; text-align: left;}
+
+/* UTILS */
+.icon-box { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+.card-header { 
+    font-weight: 800; color: var(--gold); 
+    margin-bottom: 25px; display: flex; 
+    align-items: center; gap: 10px; 
+    text-transform: uppercase; font-size: 0.9rem;
+}
+
+/* SCHEDULE */
+.pensi-schedule .s-item {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.95rem;
+}
+.pensi-schedule span { min-width: 120px; color: var(--gold); font-weight: 700; }
+
+/* BUTTONS */
 .btn-action-small {
     background: var(--gold);
     color: white;
     text-decoration: none;
-    padding: 14px;
+    padding: 12px 24px;
     border-radius: 12px;
-    display: block;
     font-weight: 800;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: 0.3s;
 }
+.btn-action-small:hover { background: var(--white); color: var(--primary); transform: scale(1.05); }
 
-.btn-action-small:hover {
-    background: var(--white);
-    color: var(--primary);
+/* MISC */
+.p-small { font-size: 0.9rem; line-height: 1.5; opacity: 0.8; }
+.deadline { color: #ff4d4d; font-weight: 800; margin: 15px 0; font-size: 1rem; }
+.example-box { 
+    background: rgba(255,255,255,0.03); 
+    padding: 20px; 
+    border-radius: 15px; 
+    font-size: 0.85rem; 
+    border-left: 4px solid var(--gold);
+    margin-top: 20px;
 }
-
-/* FOOTER */
-.pensi-footer { text-align: center; margin-top: 50px; opacity: 0.6; font-size: 0.8rem; }
+.forbidden-tags { display: flex; gap: 12px; justify-content: center; margin-top: 15px; }
+.forbidden-tags span { background: rgba(231, 76, 60, 0.1); color: #ff4d4d; padding: 6px 18px; border-radius: 8px; font-weight: 800; font-size: 0.8rem; }
+.highlight-gold { border: 1px solid var(--gold) !important; }
 
 /* ANIMATION */
 .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
 .active { opacity: 1; transform: translateY(0); }
 
+/* MOBILE RESPONSIVE */
 @media (max-width: 600px) {
+    body { padding: 30px 15px; }
     .section-title h2 { font-size: 1.8rem; }
-}
-
-/* Pastikan variabel warna sudah ada di bagian atas */
-:root {
-    --primary: #195042;
-    --gold: #91855a;
-    --glass-border: rgba(255, 255, 255, 0.15);
-}
-
-.pensi-section {
-    margin-bottom: 30px;
-}
-
-.card-header {
-    font-weight: 800;
-    color: var(--gold);
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-}
-
-.no-hover:hover {
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-.pensi-schedule .s-item {
-    display: flex;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-size: 0.9rem;
-}
-
-.pensi-schedule span {
-    min-width: 110px;
-    color: var(--gold);
-    font-weight: 700;
-}
-
-.genre-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.genre-tag {
-    background: var(--primary);
-    padding: 6px 15px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border: 1px solid var(--glass-border);
-}
-
-.example-box {
-    background: rgba(255,255,255,0.03);
-    padding: 15px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    border-left: 3px solid var(--gold);
-}
-
-.deadline {
-    color: #ff4d4d;
-    font-weight: 800;
-    font-size: 0.9rem;
-    margin: 10px 0;
-}
-
-.forbidden-box {
-    border: 1px solid rgba(231, 76, 60, 0.3) !important;
-}
-
-.forbidden-tags {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.forbidden-tags span {
-    background: rgba(231, 76, 60, 0.1);
-    color: #ff4d4d;
-    padding: 5px 15px;
-    border-radius: 5px;
-    font-weight: 800;
-    font-size: 0.8rem;
-}
-
-.highlight-gold {
-    border: 1px solid var(--gold) !important;
-}
-
-@media (max-width: 600px) {
-    .pensi-schedule .s-item {
-        flex-direction: column;
-        gap: 5px;
-    }
+    .pensi-schedule .s-item { flex-direction: column; gap: 5px; }
+    .side-slot-item { flex-direction: column; text-align: center; }
+    .item-info-row h4 { text-align: center; }
+    .bento-grid { gap: 20px; }
 }
