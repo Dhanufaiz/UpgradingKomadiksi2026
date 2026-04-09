@@ -55,8 +55,10 @@ body {
 /* BENTO GRID */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px; /* Jarak antar kotak ditingkatkan */
+    /* Ubah 320px menjadi 1fr agar memenuhi lebar layar pada mobile */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px;
+    width: 100%;
 }
 
 .bento-item {
@@ -158,5 +160,9 @@ body {
     .pensi-schedule .s-item { flex-direction: column; gap: 5px; }
     .side-slot-item { flex-direction: column; text-align: center; }
     .item-info-row h4 { text-align: center; }
-    .bento-grid { gap: 20px; }
+    .bento-grid { gap: 20px; grid-template-columns: 1fr; }
+    .bento-item {
+        padding: 30px 20px; /* Sedikit perkecil padding dalam agar teks tidak terpotong */
+        min-height: auto;   /* Biarkan tinggi menyesuaikan konten */
+    }
 }
