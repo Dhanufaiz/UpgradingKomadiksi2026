@@ -148,7 +148,14 @@ body {
 .forbidden-tags { display: flex; gap: 12px; justify-content: center; margin-top: 15px; }
 .forbidden-tags span { background: rgba(231, 76, 60, 0.1); color: #ff4d4d; padding: 6px 18px; border-radius: 8px; font-weight: 800; font-size: 0.8rem; }
 .highlight-gold { border: 1px solid var(--gold) !important; }
-
+.important-notes {
+    background: rgba(241, 196, 15, 0.1);
+    border-left: 4px solid var(--gold);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    margin-top: 25px;
+}
 /* ANIMATION */
 .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
 .active { opacity: 1; transform: translateY(0); }
