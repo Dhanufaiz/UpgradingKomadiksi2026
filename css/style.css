@@ -50,6 +50,7 @@ body { background-color: var(--dark); color: var(--white); font-family: 'Plus Ja
 .menu-container::-webkit-scrollbar { display: none; text-align: center; }
 .menu-item { flex: 0 0 auto; text-decoration: none; color: var(--accent-light); font-size: 0.8rem; font-weight: 600; padding: 8px 18px; border-radius: 50px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
 .menu-item:hover {color: white; }
+.item-content-waktu {display: flex; flex-direction: column; gap: 5px;align-items: center;}
 
 /* --- HERO --- */
 .hero-section { height: 75vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
