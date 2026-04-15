@@ -148,7 +148,7 @@ body {
 .btn-expand i {transition: transform 0.4s;}
 .btn-expand.active i {transform: rotate(180deg);}
 .rundown-section { padding: 60px 8%; background: rgba(0,0,0,0.2); }
-.timeline-wrapper { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+.timeline-wrapper { position: relative; max-width: 1500px; margin: 0 auto; padding-left: 30px; }
 .timeline-wrapper::before { content: ''; position: absolute; left: 30px; top: 0; bottom: 0; width: 2px; background: var(--glass-border); }
 .timeline-item { position: relative; padding-left: 4%; margin-bottom: 30px; }
 .timeline-dot { position: absolute; left: -6px; top: 8px; width: 14px; height: 14px; background: var(--fire); border-radius: 50%; z-index: 2; border: 3px solid var(--dark);}
