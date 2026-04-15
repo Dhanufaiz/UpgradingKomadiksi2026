@@ -1,381 +1,131 @@
-/* PROJECT: Upgrading Komadiksi Smart 2026 Landing Page
-   THEME: Professional Adventurer Journal
-   ARCHITECTURE: Vanilla CSS 
-*/
-
-/* =========================================
-   1. IMPORT LOCAL FONTS (@font-face)
-   ========================================= */
-
-/* Pastikan folder 'lambada' hanya berisi file 'Lambada.otf' */
+/* --- 1. IMPORT LOCAL FONTS --- */
 @font-face {
     font-family: 'Lambada';
-    src: url('../font/Lambada/Lambada/Lambada.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+    src: url('../font/lambada/Lambada.otf') format('opentype');
+    font-weight: normal; font-style: normal; font-display: swap;
 }
-
-/* Pastikan file di folder 'railey' bernama 'Railey-PersonalUse.ttf' */
 @font-face {
     font-family: 'Railey';
     src: url('../font/railey/Railey-PersonalUse.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+    font-weight: normal; font-style: normal; font-display: swap;
 }
-
-/* Pastikan file di folder 'kg_primary' bernama 'KGPrimaryPenmanship.ttf' */
 @font-face {
     font-family: 'KG Primary';
     src: url('../font/kg_primary_penmanship/KGPrimaryPenmanship.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+    font-weight: normal; font-style: normal; font-display: swap;
 }
 
-/* =========================================
-   2. VARIABLE & RESET
-   ========================================= */
+/* --- 2. GLOBAL VARIABLES --- */
 :root {
-    --color-forest: #2D3629;    /* Hijau hutan gelap (Background) */
-    --color-paper: #DED6C5;     /* Kertas tua (Background Card) */
-    --color-accent: #8E6E43;    /* Khaki/Tali (Ornamen) */
-    --color-action: #436D7D;    /* Biru redup (Tombol) */
-    --color-fire: #A65D2E;      /* Oranye karat (Highlight) */
-    --color-wood: #5C4033;      /* Coklat kayu tua (Border) */
-    --color-dark: #1E231C;      /* Teks utama */
+    /* Colors from style.css */
+    --primary: #2D3629;      /* Forest Green */
+    --paper: #DED6C5;        /* Paper Background */
+    --accent: #8E6E43;       /* Khaki/Rope */
+    --action: #436D7D;       /* River Blue */
+    --fire: #A65D2E;         /* Fire Orange */
+    --wood: #5C4033;         /* Deep Wood */
+    --dark: #1E231C;         /* Dark Text */
+    --white: #ffffff;
     
-    --font-lambada: 'Lambada', serif;
-    --font-railey: 'Railey', cursive;
-    --font-kg: 'KG Primary', sans-serif;
+    /* Typography */
+    --font-heading: 'Railey', cursive;
+    --font-logo: 'Lambada', serif;
+    --font-body: 'KG Primary', sans-serif;
     
+    /* Layout Patterns from style_1 */
+    --glass: rgba(222, 214, 197, 0.15);
+    --glass-border: rgba(92, 64, 51, 0.2);
     --hard-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
-    --bento-radius: 4px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* --- 3. RESET & BASE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: var(--font-kg);
-    background-color: var(--color-forest);
-    color: var(--color-paper);
+    background-color: var(--primary);
+    color: var(--paper);
+    font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* =========================================
-   3. NAVBAR
-   ========================================= */
 .navbar {
-    position: fixed;
+    background: rgba(45, 54, 41, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--accent);
+    position: sticky;
     top: 0;
-    width: 100%;
     z-index: 1000;
-    background-color: rgba(30, 35, 28, 0.95);
-    border-bottom: 3px solid var(--color-accent);
-    backdrop-filter: blur(5px);
 }
-
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%;
-    flex-wrap: wrap;
+    padding: 1rem 3%;
+    padding-bottom: 0;
 }
 
 .brand-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+        display: flex;
+        flex-direction: row; 
+        justify-content: space-between; /* Logo ke kiri mentok, Teks ke kanan mentok */
+        align-items: center;
+        gap: 20px;
 }
 
 .logos {
     display: flex;
-    gap: 10px;
+    gap: 5px;
 }
 
 .img-logo {
     height: 40px;
     border-radius: 50%;
-    border: 1px solid var(--color-accent);
-    background-color: var(--color-paper);
+    border: 1.5px solid var(--accent);  
+    background: var(--paper);
+    padding: 2px;
 }
 
-.brand-text .label {
+.brand-text .label{
+    font-size: 1rem;
+    letter-spacing: 2px; 
+    color: var(--accent); 
     display: block;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: var(--color-accent);
+    font-weight: 800; 
 }
 
 .brand-text .kabinet-name {
-    font-family: var(--font-railey);
-    font-size: 1.4rem;
-    color: var(--color-paper);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--paper);
+    justify-content: space-between;
+    font-weight: 700;
 }
 
-.motto-section {
-    text-align: right;
-    font-size: 0.8rem;
-    color: var(white);
-    font-weight: bold;
-}
-
-.sub-menu {
-    background: var(--color-wood);
-    overflow-x: auto;
-}
-
-.menu-container {
-    display: flex;
-    justify-content: center;
-    padding: 8px 0;
-}
-
-.menu-item {
-    color: white;
-    text-decoration: none;
-    padding: 0 15px;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-.menu-item:hover {
-    color: var(--color-fire);
-}
-
-/* =========================================
-   4. HERO
-   ========================================= */
-.hero-section {
-    position: relative;
-    height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.hero-bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.4;
-}
-
-.hero-text {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-text h1 {
-    font-family: var(--font-railey);
-    font-size: 4rem;
-    color: var(--color-paper);
-    margin-bottom: 10px;
-}
-
-.highlight { color: var(--color-fire); }
-
-/* =========================================
-   5. BENTO GRID
-   ========================================= */
-.content-section { padding: 50px 5%; }
-
-.section-title {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.section-title h2 {
-    font-family: var(--font-railey);
-    font-size: 2.5rem;
-}
-
-.underline {
-    width: 50px;
-    height: 3px;
-    background: var(--color-fire);
-    margin: 10px auto;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.info-card {
-    grid-column: span 4;
-    background: var(--color-paper);
-    color: var(--color-dark);
-    padding: 25px;
-    border: 1px solid var(--color-wood);
-    border-radius: var(--bento-radius);
-    box-shadow: var(--hard-shadow);
-}
-
-.info-card.full-width { grid-column: span 12; }
-
-.info-card h3 {
-    font-family: var(--font-railey);
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-.gold-icon { color: var(--color-fire); font-size: 1.5rem; }
-
-/* =========================================
-   6. RUNDOWN (ROPE TIMELINE)
-   ========================================= */
-.timeline-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.timeline-list::before {
-    content: '';
-    position: absolute;
-    left: 20px;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: repeating-linear-gradient(0deg, var(--color-accent), var(--color-accent) 5px, var(--color-wood) 5px, var(--color-wood) 10px);
-}
-
-.timeline-item {
-    list-style: none;
-    padding-left: 50px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.timeline-dot {
-    position: absolute;
-    left: 15px;
-    top: 5px;
-    width: 14px;
-    height: 14px;
-    background: var(--color-fire);
-    border-radius: 50%;
-    z-index: 2;
-}
-
-.timeline-content {
-    background: var(--color-paper);
-    padding: 15px;
-    color: var(--color-dark);
-    border-radius: var(--bento-radius);
-    box-shadow: var(--hard-shadow);
-}
-
-/* =========================================
-   7. PAPER BLOCK (RULES)
-   ========================================= */
-.paper-block {
-    background-color: #CAC2B1;
-    color: var(--color-dark);
-    padding: 30px;
-    max-width: 800px;
-    margin: 40px auto;
-    border-left: 10px solid var(--color-wood);
-    box-shadow: var(--hard-shadow);
-}
-
-.paper-header h2 {
-    font-family: var(--font-lambada);
-    font-size: 2.2rem;
-}
-
-/* =========================================
-   8. GEAR & FOOTER
-   ========================================= */
-.gear-grid {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.gear-card {
-    background: var(--color-paper);
-    color: var(--color-dark);
-    padding: 20px;
-    min-width: 250px;
-    border: 1px solid var(--color-wood);
-    box-shadow: var(--hard-shadow);
-}
-
-.btn-war, .btn-action-small {
-    background: var(--color-action);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-family: var(--font-kg);
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    box-shadow: 2px 2px 0 var(--color-dark);
-}
-
-.btn-war { background: var(--color-fire); }
-
-.fatisda-footer {
-    background: #171A15;
-    padding: 40px 5%;
-    border-top: 3px solid var(--color-accent);
-}
-
-.footer-brand h2 { font-family: var(--font-lambada); }
-
-/* =========================================
-   9. RESPONSIVE
-   ========================================= */
 @media (max-width: 768px) {
-    /* Mengubah header menjadi vertikal dan rata tengah */
-    .header-container { 
-        flex-direction: column; 
-        text-align: justify;
-        gap: 12px;
-        padding: 15px 5%;
-    }
-
-    /* Menumpuk Logo ke atas dan Nama Kabinet ke bawah */
-    .brand-section {
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    /* Memastikan deretan logo tetap di tengah */
-    .logos {
-        justify-content: center;
-    }
-
-    /* Memastikan teks kabinet rata tengah */
-    .brand-text {
-        text-align: center;
-    }
-
-    /* Memastikan motto rata tengah */
-    .motto-section { 
-        text-align: center; 
-        justify-content: center; /* Jika kamu pakai cara flexbox di motto */
-    }
-
-    /* Penyesuaian lain untuk versi mobile */
-    .hero-text h1 { font-size: 3rem; }
-    .info-card { grid-column: span 12; }
-    .footer-top { grid-template-columns: 1fr; }
-    .footer-bottom { justify-content: center; }
+    /* 1. Perkecil Padding Utama Navbar */
+    .header-container {padding: 0.5rem 4%; /* Dari 1rem menjadi 0.5rem */gap: 10px;}
+    /* 2. Perkecil Ukuran Logo */
+    .img-logo {height: 30px; /* Dari 45px menjadi 30px */}
+    /* 3. Perkecil Ukuran Teks Branding */
+    .brand-text .label {font-size: 0.5rem; /* Teks "KABINET" diperkecil */letter-spacing: 1px;}
+    .brand-text .kabinet-name {font-size: 0.8rem; /* Nama kabinet diperkecil */}
+    /* 4. Sembunyikan Motto di HP (Opsional agar lebih bersih) */
+    /* Atau jika ingin tetap ada, perkecil ukurannya */
+    .motto-section {font-size: 0.55rem; padding-left: 10px;}
+    /* 5. Atur Sub-Menu (Chips) agar lebih rapat */
+    .sub-menu {padding: 5px 0;}
+    .menu-item {padding: 6px 12px;font-size: 0.75rem;}
+    /* 6. Atur Sticky Position agar pas */
+    .sub-menu {top: 55px; /* Sesuaikan dengan tinggi header baru yang lebih kecil */}
 }
+
+/* SUB-MENU (SCROLLABLE CHIPS) */
+.sub-menu { padding: 8px 0; border-bottom: 1px solid var(--glass-border); }
+.menu-container { justify-content: safe center; display: flex; gap: 10px; overflow-x: auto; padding: 0 5%; scrollbar-width: none; }
+.menu-container::-webkit-scrollbar { display: none; text-align: center; }
+.menu-item { flex: 0 0 auto; text-decoration: none; color: var(--accent-light); font-size: 0.8rem; font-weight: 600; padding: 8px 18px; border-radius: 50px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+.menu-item:hover {color: white; }
+.item-content-waktu {display: flex; flex-direction: column; gap: 5px;align-items: center;}
