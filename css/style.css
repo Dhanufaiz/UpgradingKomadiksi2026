@@ -1,357 +1,256 @@
-/* PROJECT: Upgrading Komadiksi Smart 2026
-   REVISED: Professional & Harmonious Earthy Tone
-*/
+/* --- GLOBAL STYLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
 
-/* =========================================
-   1. IMPORT LOCAL FONTS
-   ========================================= */
-@font-face {
-    font-family: 'Lambada';
-    src: url('../font/Lambada/Lambada/Lambada.otf') format('opentype');
-    font-weight: normal; font-style: normal; font-display: swap;
-}
-@font-face {
-    font-family: 'Railey';
-    src: url('../font/railey/Railey-PersonalUse.ttf') format('truetype');
-    font-weight: normal; font-style: normal; font-display: swap;
-}
-@font-face {
-    font-family: 'KG Primary';
-    src: url('../font/kg_primary_penmanship/KGPrimaryPenmanship.ttf') format('truetype');
-    font-weight: normal; font-style: normal; font-display: swap;
-}
-
-/* =========================================
-   2. GLOBAL VARIABLES (Balanced Color Palette)
-   ========================================= */
 :root {
-    /* Base Colors - Lebih Muted & Harmonious */
-    --primary-dark: #242B21;   /* Deep Forest */
-    --primary-soft: #2D3629;   /* Soft Forest */
-    --paper-light: #E5DDD0;    /* Clean Paper */
-    --paper-dark: #DED6C5;     /* Aged Paper */
-    --accent-gold: #A68B5B;    /* Muted Gold */
-    --accent-wood: #5C4033;    /* Warm Wood */
-    --accent-fire: #B56535;    /* Terracotta Orange */
-    --accent-water: #4A7C8F;   /* Dusty Blue */
-    --text-dark: #1E231C;
-    --text-light: #F5F1E9;
-    
-    /* System */
-    --font-heading: 'Railey', cursive;
-    --font-logo: 'Lambada', serif;
-    --font-body: 'KG Primary', sans-serif;
-    --shadow-soft: 0 4px 15px rgba(0,0,0,0.1);
-    --shadow-hard: 4px 4px 0px var(--accent-wood);
-    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --primary: #195042;
+    --accent-light: #d6cabc;
+    --gold: #91855a;
+    --dark: #1d3937;
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
 }
 
-/* =========================================
-   3. BASE STYLES
-   ========================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+body { background-color: var(--dark); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; }
 
-body {
-    background-color: var(--primary-dark);
-    color: var(--text-light);
-    font-family: var(--font-body);
-    line-height: 1.7;
-    overflow-x: hidden;
+/* --- NAVBAR --- */
+.navbar { background: rgba(29, 57, 55, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-border); position: sticky; top: 0; z-index: 1000; }
+.header-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; padding-bottom: 0; }
+.brand-section { display: flex; align-items: center; gap: 15px; }
+.logos { display: flex; gap: 8px; }
+.img-logo { height: 40px; border-radius: 50%; background: white; padding: 2px; }
+.brand-text .label { font-size: 0.6rem; letter-spacing: 2px; color: var(--accent-light); display: block; }
+.brand-text .kabinet-name { font-weight: 800; color: var(--gold); }
+.motto-section { text-align: right; font-size: 0.7rem; border-left: 1px solid var(--accent-light); padding-left: 15px; opacity: 0.8; }
+
+/* --- RESPONSIVE FIX UNTUK MOBILE --- */
+@media (max-width: 768px) {
+    /* 1. Perkecil Padding Utama Navbar */
+    .header-container {padding: 0.5rem 4%; /* Dari 1rem menjadi 0.5rem */gap: 10px;}
+    /* 2. Perkecil Ukuran Logo */
+    .img-logo {height: 30px; /* Dari 45px menjadi 30px */}
+    /* 3. Perkecil Ukuran Teks Branding */
+    .brand-text .label {font-size: 0.5rem; /* Teks "KABINET" diperkecil */letter-spacing: 1px;}
+    .brand-text .kabinet-name {font-size: 0.8rem; /* Nama kabinet diperkecil */}
+    /* 4. Sembunyikan Motto di HP (Opsional agar lebih bersih) */
+    /* Atau jika ingin tetap ada, perkecil ukurannya */
+    .motto-section {font-size: 0.55rem; padding-left: 10px;}
+    /* 5. Atur Sub-Menu (Chips) agar lebih rapat */
+    .sub-menu {padding: 5px 0;}
+    .menu-item {padding: 6px 12px;font-size: 0.75rem;}
+    /* 6. Atur Sticky Position agar pas */
+    .sub-menu {top: 55px; /* Sesuaikan dengan tinggi header baru yang lebih kecil */}
 }
 
-/* =========================================
-   4. NAVBAR (Clean & Modern)
-   ========================================= */
-.navbar {
-    background: rgba(36, 43, 33, 0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 2px solid var(--accent-gold);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: var(--transition);
+/* SUB-MENU (SCROLLABLE CHIPS) */
+.sub-menu { padding: 8px 0; border-bottom: 1px solid var(--glass-border); }
+.menu-container { justify-content: safe center; display: flex; gap: 10px; overflow-x: auto; padding: 0 5%; scrollbar-width: none; }
+.menu-container::-webkit-scrollbar { display: none; text-align: center; }
+.menu-item { flex: 0 0 auto; text-decoration: none; color: var(--accent-light); font-size: 0.8rem; font-weight: 600; padding: 8px 18px; border-radius: 50px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+.menu-item:hover {color: white; }
+
+/* --- HERO --- */
+.hero-section { height: 75vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.4; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--dark)); }
+.booklet-label { color: var(--gold); letter-spacing: 4px; font-size: 0.8rem; font-weight: 800; }
+.hero-text h1 { font-size: 3.2rem; font-weight: 800; margin: 10px 0; }
+.highlight { color: var(--white); }
+.subtitle { font-style: italic; opacity: 0.7; }
+
+/* --- SECTIONS --- */
+.content-section { padding: 80px 8% 40px; }
+.section-title { text-align: center; margin-bottom: 40px; }
+.underline { width: 50px; height: 3px; background: var(--gold); margin: 10px auto; }
+
+/* INFO GRID */
+.info-card p {text-align: justify;}
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.info-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--glass-border); transition: 0.3s; }
+.info-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+.gold-icon { color: var(--gold); font-size: 1.8rem; margin-bottom: 15px; display: block; }
+.ticket-card { background: linear-gradient(90deg, var(--primary), var(--dark)); border-left: 5px solid var(--gold); }
+.ticket-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.full-width { grid-column: 1 / -1; }
+
+/* TATA TERTIB (PAPER STYLE) */
+.paper-block { background: #fdfdfd; color: #2c3e50; padding: 40px; border-radius: 4px; box-shadow: 12px 12px 0px var(--gold); max-width: 800px; margin: 0 auto; }
+.paper-header { display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #eee; margin-bottom: 25px; padding-bottom: 10px; }
+.rules-list { list-style: none; padding-left: 0; }
+.rules-list li { margin-bottom: 15px; display: flex; gap: 12px; font-weight: 600; }
+.color-gold { color: var(--gold); }
+.color-red { color: #e74c3c; }
+
+
+/* PERLENGKAPAN */
+.gear-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.gear-card { background: var(--glass); border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border); }
+.gear-tag { padding: 12px; text-align: center; font-weight: 800; font-size: 0.9rem; }
+.private { background: var(--gold); color: white; }
+.field { background: var(--primary); color: white; }
+.gear-card ul { padding: 25px; list-style: none; }
+.gear-card li::before { content: "•"; color: var(--gold); margin-right: 10px; font-weight: bold; }
+
+/* RUNDOWN */
+/* Sembunyikan konten tambahan */
+.rundown-extended {max-height: 0; overflow: visible; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);opacity: 0;}
+
+/* Class saat aktif (dibuka via JS) */
+.rundown-extended.show {max-height: 1000px; opacity: 1;}
+.expand-btn-container {text-align: center; margin-top: 20px; position: relative; z-index: 5;}
+.btn-expand {background: var(--glass); border: 1px solid var(--gold); color: var(--gold); padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;}
+.btn-expand:hover {background: var(--gold);color: white; border-color: var(--gold);}
+
+/* Animasi Ikon saat Terbuka */
+.btn-expand i {transition: transform 0.4s;}
+.btn-expand.active i {transform: rotate(180deg);}
+.rundown-section { padding: 60px 8%; background: rgba(0,0,0,0.2); }
+.timeline-wrapper { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+.timeline-wrapper::before { content: ''; position: absolute; left: 30px; top: 0; bottom: 0; width: 2px; background: var(--glass-border); }
+.timeline-item { position: relative; padding-left: 4%; margin-bottom: 30px; }
+.timeline-dot { position: absolute; left: -6px; top: 8px; width: 14px; height: 14px; background: var(--gold); border-radius: 50%; z-index: 2; border: 3px solid var(--dark);}
+.timeline-content { background: var(--glass); padding: 20px; border-radius: 15px; border: 1px solid var(--glass-border); }
+.time-tag { font-size: 0.75rem; background: var(--primary); padding: 4px 10px; border-radius: 5px; color: var(--accent-light); font-weight: bold; }
+.pulse { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0.7); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(145, 133, 90, 0); } 100% { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0); } }
+
+/* PENSI (BENTO) */
+.pentas-seni { padding: 80px 8%; }
+.bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.bento-item { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.4s; }
+.bento-item:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(255,255,255,0.12); }
+.item-info h3 { font-size: 0.8rem; color: var(--accent-light); margin-bottom: 5px; }
+.item-info h4 { font-size: 1.8rem; margin-bottom: 20px; }
+.btn-action-small { background: var(--gold); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 700; text-align: center; transition: 0.3s; display: inline-block; }
+.btn-action-small:hover { background: white; color: var(--primary)}
+/* --- PENSI NOTICE STYLING --- */
+.pensi-notice {
+    background: var(--glass);
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 0 auto 40px;
+    max-width: 850px;
+    text-align: left;
+    backdrop-filter: blur(10px);
 }
 
-.header-container {
+.notice-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 3px 6%;
-    max-width: 1400px;
-    margin: 0 auto;
+    gap: 12px;
+    color: var(--gold);
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 10px;
 }
 
-.brand-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.logos { display: flex; gap: 12px; }
-
-.img-logo {
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-gold);
-    background: white;
-    padding: 2px;
-}
-
-.brand-text .label {
-    display: block;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    color: var(--accent-gold);
-    font-weight: bold;
-    margin-bottom: -4px;
-}
-
-.brand-text .kabinet-name {
-    font-family: var(--font-logo);
-    font-size: 1.8rem;
-    color: var(--paper-light);
-}
-
-.motto-section {
-    text-align: right;
-    font-size: 0.85rem;
-    color: var(--accent-gold);
-    border-left: 2px solid var(--accent-gold);
-    padding-left: 15px;
+.notice-body p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
     opacity: 0.9;
 }
 
-/* 1. Container Luar: Berfungsi sebagai 'topeng' untuk menyembunyikan scrollbar */
-.sub-menu {
-    background: var(--primary-soft);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    overflow: hidden; /* MEMOTONG bagian bawah yang ada scrollbar-nya */
-    position: sticky;
-    top: 60px; /* Sesuaikan dengan tinggi navbar utama */
-    z-index: 999;
-}
-
-/* 2. Container Dalam: Tempat scroll terjadi */
-.menu-container {
-    display: flex;
-    justify-content: flex-start; /* Ubah ke flex-start agar bisa di-scroll di HP */
+.notice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
-    padding: px0 0px;
-    
-    /* Scroll Aktif */
-    overflow-x: auto; 
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-
-    /* Sembunyikan Scrollbar untuk Firefox, IE, Edge */
-    scrollbar-width: none; 
-    -ms-overflow-style: none;
+    margin-bottom: 20px;
 }
 
-/* 3. Sembunyikan Scrollbar untuk Chrome, Safari, dan Opera */
-.menu-container::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    background: transparent;
-}
-
-.menu-item {
-    color: var(--paper-light);
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 0px 20px;
-    border-radius: 30px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid transparent;
-    transition: var(--transition);
-}
-
-.menu-item:hover {
-    background: var(--accent-gold);
-    color: var(--primary-dark);
-    transform: translateY(-2px);
-}
-
-/* =========================================
-   5. HERO SECTION
-   ========================================= */
-.hero-section {
-    height: 90vh;
+.n-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    padding: 0 5%;
-}
-
-.hero-text h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(3.5rem, 10vw, 6.5rem);
-    color: var(--paper-light);
-    line-height: 0.9;
-    text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
-}
-
-.highlight { color: var(--accent-fire); }
-
-/* =========================================
-   6. BENTO GRID CONTENT
-   ========================================= */
-.content-section {
-    padding: 100px 8%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.section-title h2 {
-    font-family: var(--font-heading);
-    font-size: 3.5rem;
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 30px;
-}
-
-.info-card {
-    grid-column: span 4;
-    background: var(--paper-light);
-    color: var(--text-dark);
-    padding: 40px;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
     border-radius: 12px;
-    box-shadow: var(--shadow-soft);
-    border-bottom: 5px solid var(--accent-gold);
-    transition: var(--transition);
 }
 
-.info-card:hover { transform: translateY(-10px); }
-.info-card.full-width { grid-column: span 12; }
-
-.info-card h3 {
-    font-family: var(--font-heading);
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: var(--primary-dark);
+.n-item i {
+    color: var(--gold);
 }
 
-/* =========================================
-   7. TIMELINE & DECORATIONS
-   ========================================= */
-.timeline-item {
-    list-style: none;
+.notice-footer {
+    font-size: 0.85rem !important;
+    font-style: italic;
+    color: var(--accent-light);
+    margin-bottom: 0 !important;
+}
+
+/* Responsif Mobile */
+@media (max-width: 600px) {
+    .pensi-notice {
+        padding: 20px;
+    }
+    .notice-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- MODERN & AGRESSIVE WAR SLOT BUTTON --- */
+.expand-btn-container {
+    text-align: center;
+    padding: 30px 0;
+    margin: 20px auto;
     position: relative;
-    padding-left: 40px;
-    margin-bottom: 25px;
-    border-left: 2px dashed var(--accent-gold);
+    z-index: 5;
 }
-
-.timeline-item::before {
-    content: '◈';
-    position: absolute;
-    left: -10px;
-    color: var(--accent-fire);
-    background: var(--paper-light);
+.slot {
+    display: flex;
+    justify-content: center;
 }
-
-/* =========================================
-   8. REVISI TAMPILAN MOBILE (The Fix)
-   ========================================= */
-@media (max-width: 768px) {
-    /* 1. Header: Rapih di Tengah (Symmetrical) */
-    .header-container {
-        flex-direction: space-between;
-        padding: 10px 5%;
-        
-    }
-
-    .brand-section {
-        flex-direction: row;
-        gap: 12px;
-        
-    }
-
-    .logos {
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .img-logo { height: 45px; }
-
-    .brand-text {
-        text-align: left;
-        
-    }
-
-    .brand-text .label {
-        font-size: 0.5rem;
-        letter-spacing: 5px;
-    }
-
-    .brand-text .kabinet-name {
-        font-size: 1rem;
-    }
-
-    
-
-    /* 2. Motto: Minimalis di bawah Nama */
-    .motto-section {
-        border-left: none;
-        border-left: 1px solid rgba(166, 139, 91, 0.3);
-        padding-left: 10px;
-        padding-top: 10px;
-        text-align: right;
-        font-size: 0.75rem;
-        letter-spacing: 1px;
-    }
-
-    /* 3. Navigation: Chips yang bisa di-swipe */
-    .menu-container {
-        justify-content: flex-start;
-        padding: 15px 5%;
-        gap: 12px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .menu-item {
-        font-size: 0.9rem;
-        white-space: nowrap;
-        background: rgba(255,255,255,0.08);
-        padding: 8px 16px;
-    }
-
-    /* 4. Content: Stack Vertikal */
-    .info-grid .info-card {
-        grid-column: span 12;
-        padding: 25px;
-    }
-
-    .hero-text h1 { font-size: 3.2rem; }
-    .section-title h2 { font-size: 2.5rem; }
-}
-
-/* =========================================
-   9. UTILITIES
-   ========================================= */
-.btn-action {
-    display: inline-block;
-    padding: 14px 32px;
-    background: var(--accent-fire);
+/* Tombol Call to Action Utama */
+.btn-war {
+    /* Gradasi berapi: Merah jingga ke Emas */
+    background: var(--glass);
+    background-size: 200% auto; /* Untuk animasi gradasi jalan */
     color: white;
     text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-    box-shadow: 4px 4px 0px var(--primary-dark);
-    transition: var(--transition);
+    padding: 18px 45px;
+    border-radius: 50px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase; /* Huruf besar semua agar tegas */
+    letter-spacing: 1.5px;    
 }
 
-.btn-action:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px var(--primary-dark);
+.btn-war:hover { background: var(--gold);color: white; border-color: var(--gold);}
+
+
+
+/* CONTACT */
+.contact-card-modern { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 25px; padding: 50px; text-align: center; }
+.cp-group { display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+.cp-button { background: #25d366; color: white; text-decoration: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+.cp-button:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37,211,102,0.3); }
+
+/* FOOTER */
+.fatisda-footer { background: #122423; padding: 60px 8% 30px; border-top: 1px solid var(--glass-border); }
+.footer-top { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; margin-bottom: 40px; }
+.footer-brand .footer-logo { height: 120px; margin-bottom: 15px; }
+.footer-brand h2 { color: var(--gold); }
+.footer-contact h4 { color: var(--gold); font-size: 0.8rem; margin-bottom: 5px; }
+.footer-map iframe { border-radius: 15px; opacity: 0.8; }
+.footer-bottom { border-top: 1px solid var(--glass-border); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; opacity: 0.7; }
+.social-links { display: flex; gap: 15px; font-size: 1.2rem; }
+.social-links a { color: white; }
+
+/* ANIMATION CLASSES */
+.reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+.reveal-left { opacity: 0; transform: translateX(-30px); transition: 1s all ease; }
+.reveal-right { opacity: 0; transform: translateX(30px); transition: 1s all ease; }
+.active { opacity: 1; transform: translate(0); }
+
+@media (max-width: 768px) {
+    .hero-text h1 { font-size: 2.2rem; }
+    .footer-top, .gear-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
 }
