@@ -88,7 +88,7 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 
 /* --- SECTIONS --- */
 .content-section { padding: 80px 8% 40px; }
-.section-title h2 { color: var(--fire); font-family: var(--font-logo); font-weight: normal; text-align: center; font-size: 2.5rem; margin-bottom: 10px; text-shadow:  0 0 1px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2)} 
+.section-title h2 { color: var(--paper); font-family: var(--font-logo); font-weight: normal; text-align: center; font-size: 2.5rem; margin-bottom: 10px; text-shadow:  0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(223, 116, 9, 0.2)} 
 .section-title {font-family: var(--font-logo); text-align: center; font-size: 1rem; margin-bottom: 10px; }   
 .underline { width: 50px; height: 3px; background: var(--fire); margin: 10px auto; }
 
