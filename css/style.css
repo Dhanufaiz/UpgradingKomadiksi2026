@@ -93,11 +93,14 @@ body {
 .menu-item:hover {color: white; }
 
 /* --- HERO --- */
-.hero-section { height: 75vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero-section { height: 75vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--wood); overflow: visible; }
 .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.4; }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--dark)); }
-.booklet-label { color: var(--fire); letter-spacing: 4px; font-size: 0.8rem; font-weight: 800; }
-.hero-text h1 { font-size: 3.2rem; font-weight: normal; margin: 10px 0; font-family: var(--font-logo)}
+.booklet-label { color: var(--white); letter-spacing: 4px; font-size: 0.8rem; font-weight: normal; }
+.hero-text h1 { font-size: 3.2rem; font-weight: normal; margin: 10px 0; font-family: var(--font-logo); color: var(--paper);
+    text-shadow: 
+        0 0 10px rgba(32, 165, 172, 0.3), /* Cahaya dalam tipis */
+        0 0 20px rgba(34, 158, 0, 0.2);  /* Cahaya luar warna emas */}
 .highlight { color: var(--paper); }
 .subtitle { font-style: italic; opacity: 0.7; }
 
@@ -108,11 +111,12 @@ body {
 
 /* INFO GRID */
 .info-card p {text-align: justify;}
+.info-grid h3 { color: var(--paper); font-family: var(--font-heading); font-weight: normal;}
 .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
 .info-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 3px solid var(--glass-border); transition: 0.3s; }
 .info-card:hover { border-color: var(--fire); transform: translateY(-5px); }
 .gold-icon { color: var(--action); font-size: 1.8rem; margin-bottom: 15px; display: block; }
-.ticket-card { background: linear-gradient(90deg, var(--glass), var(--dark)); border-left: 5px solid var(--fire); }
+.ticket-card { background: linear-gradient(90deg, var(--glass), var(--dark)); border: 5px solid var(--fire); }
 .ticket-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
 .full-width { grid-column: 1 / -1; }
 
@@ -132,14 +136,14 @@ body {
 .private { background: var(--fire); color: white; }
 .field { background: var(--primary); color: white; }
 .gear-card ul { padding: 25px; list-style: none; }
-.gear-card li::before { content: "•"; color: var(--fire); margin-right: 10px; font-weight: bold; }
+.gear-card li::before { content: "•"; color: var(--fire); margin-right: 10px; font-weight: normal; }
 
 /* RUNDOWN */
 /* Sembunyikan konten tambahan */
 .rundown-extended {max-height: 0; overflow: visible; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);opacity: 0;}
 
 /* Class saat aktif (dibuka via JS) */
-.rundown-extended.show {max-height: 1000px; opacity: 1;}
+.rundown-extended.show {max-height: 1500px; opacity: 1;}
 .expand-btn-container {text-align: center; margin-top: 20px; position: relative; z-index: 5;}
 .btn-expand {background: var(--glass); border: 1px solid var(--fire); color: var(--fire); padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;}
 .btn-expand:hover {background: var(--fire);color: white; border-color: var(--fire);}
@@ -153,7 +157,7 @@ body {
 .timeline-item { position: relative; padding-left: 4%; margin-bottom: 30px; }
 .timeline-dot { position: absolute; left: -6px; top: 8px; width: 14px; height: 14px; background: var(--fire); border-radius: 50%; z-index: 2; border: 3px solid var(--dark);}
 .timeline-content { background: var(--glass); padding: 20px; border-radius: 15px; border: 1px solid var(--glass-border); }
-.time-tag { font-size: 0.75rem; background: var(--primary); padding: 4px 10px; border-radius: 5px; color: var(--paper); font-weight: 800; }
+.time-tag { font-size: 0.75rem; background: var(--primary); padding: 4px 10px; border-radius: 5px; color: var(--paper); font-weight: normal; }
 .pulse { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0.7); animation: pulse 1.5s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(145, 133, 90, 0); } 100% { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0); } }
 
@@ -164,7 +168,7 @@ body {
 .bento-item:hover { transform: translateY(-10px); border-color: var(--fire); background: rgba(255,255,255,0.12); }
 .item-info h3 { font-size: 0.8rem; color: var(--paper); margin-bottom: 5px; }
 .item-info h4 { font-size: 1.8rem; margin-bottom: 20px; }
-.btn-action-small { background: var(--fire); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 700; text-align: center; transition: 0.3s; display: inline-block; }
+.btn-action-small { background: var(--fire); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: normal; text-align: center; transition: 0.3s; display: inline-block; width: 100%;}
 .btn-action-small:hover { background: white; color: var(--primary)}
 /* --- PENSI NOTICE STYLING --- */
 .pensi-notice {
@@ -183,7 +187,7 @@ body {
     align-items: center;
     gap: 12px;
     color: var(--fire);
-    font-weight: 800;
+    font-weight: normal;
     font-size: 1.1rem;
     margin-bottom: 15px;
     border-bottom: 1px solid var(--glass-border);
@@ -254,7 +258,7 @@ body {
     text-decoration: none;
     padding: 18px 45px;
     border-radius: 50px;
-    font-weight: 800;
+    font-weight: normal;
     display: inline-flex;
     align-items: center;
     gap: 15px;
@@ -270,7 +274,7 @@ body {
 /* CONTACT */
 .contact-card-modern { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 25px; padding: 50px; text-align: center; }
 .cp-group { display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
-.cp-button { background: #25d366; color: white; text-decoration: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+.cp-button { background: #25d366; color: white; text-decoration: none; padding: 12px 25px; border-radius: 50px; font-weight: normal; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
 .cp-button:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37,211,102,0.3); }
 
 /* FOOTER */
