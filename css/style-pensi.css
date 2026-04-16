@@ -1,175 +1,83 @@
+/* --- GLOBAL STYLES --- */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
 
+@font-face {
+    font-family: 'Lambada';
+    src: url('../font/Lambada/Lambada/Lambada.otf') format('opentype');
+    font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'Railey';
+    src: url('../font/railey/Railey-PersonalUse.ttf') format('truetype');
+    font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'KG Primary';
+    src: url('../font/kg_primary_penmanship/KGPrimaryPenmanship.ttf') format('truetype');
+    font-weight: normal; font-style: normal; font-display: swap;
+}
+
+/* --- 2. GLOBAL VARIABLES --- */
 :root {
-    --primary: #195042;
-    --accent-light: #d6cabc;
-    --gold: #91855a;
-    --dark: #1d3937;
+    /* Colors from style.css */
+    --primary: #2D3629;      
+    --paper: #DED6C5;        
+    --accent: #8E6E43;       
+    --action: #436D7D;       
+    --fire: #A65D2E;         
+    --wood: #5C4033;         
+    --dark: #1E231C;         
     --white: #ffffff;
-    --glass: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.15);
+    
+    /* Typography */
+    --font-heading: 'Railey', 'cursive';
+    --font-logo: 'Lambada', serif;
+    --font-body: 'KG Primary', sans-serif;
+    
+    /* Layout Patterns from style_1 */
+    --glass: rgba(222, 214, 197, 0.15);
+    --glass-border: rgba(92, 64, 51, 0.2);
+    --hard-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
-body { 
-    background-color: var(--dark); 
-    color: var(--white); 
-    font-family: 'Plus Jakarta Sans', sans-serif; 
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    padding: 60px 20px; /* Padding body ditambah agar lega */
+html { scroll-behavior: smooth; }
+body {background-color: var(--dark);  color: var(--white); font-family: var(--font-body);  line-height: 1.6;  font-weight: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
 }
 
-.pensi-page { max-width: 1000px; width: 100%; }
+.navbar { background: var(--glass-border); backdrop-filter: blur(10px); border-bottom: 3px solid var(--fire); position: sticky; top: 0; height: 60px; z-index: 1000; }
+.header-container { display: flex; justify-content: space-between; align-items: center; padding: 10px; padding-bottom: 10px; padding-bottom: 0; }
+.brand-section { display: flex; align-items: center; gap: 15px; }
+.logos { display: flex; gap: 8px; }
+.img-logo { height: 40px; border-radius: 50%; background: white; padding: 2px; }
+.brand-text {display: flex; flex-direction: column; line-height: 1.3;}
+.brand-text .label { font-size: 0.6rem; letter-spacing: 0px; color: var(--paper); display: block; font-family: var(--font-heading);}
+.brand-text .kabinet-name { font-weight: normal; color: var(--fire); font-family: var(--font-heading);}
+.motto-section { text-align: right; font-size: 0.7rem; border-left: 1px solid var(--paper); padding-left: 15px; opacity: 0.8; line-height: 1; }
 
-/* HEADER */
-.pensi-header { text-align: center; margin-bottom: 60px; }
-.back-btn { 
-    display: inline-block; 
-    color: var(--accent-light); 
-    text-decoration: none; 
-    font-size: 0.85rem; 
-    margin-bottom: 30px; 
-    transition: 0.3s;
-    font-weight: 600;
-}
-.back-btn:hover { color: var(--gold); transform: translateX(-5px); }
-
-.section-title h2 { font-size: 2.5rem; font-weight: 800; margin: 15px 0; letter-spacing: -1px; }
-.underline { width: 60px; height: 4px; background: var(--gold); margin: 0 auto; border-radius: 2px; }
-
-/* SECTIONS */
-.pensi-section {
-    margin-bottom: 50px; /* Jarak antar section ditingkatkan agar tidak rapat */
+@media (max-width: 768px) {
+    .header-container {padding: 0.5rem 4%;gap: 10px;}
+    .img-logo {height: 30px;}
+    .brand-text .label {font-size: 0.5rem; letter-spacing: 1px;}
+    .brand-text .kabinet-name {font-size: 0.8rem;}
+    .motto-section {font-size: 0.55rem; padding-left: 10px;}
+    .sub-menu {padding: 5px 0;}
+    .menu-item {padding: 6px 12px;font-size: 0.75rem;}
+    .sub-menu {top: 20px;}
 }
 
-.section-desc {
-    margin-bottom: 30px; 
-    font-size: 0.95rem; 
-    opacity: 0.8; 
-    text-align: center;
-}
+.pensi-header {text-align: center; padding: 40px 20px; border-radius: 8px; margin-bottom: 30px;}
+.back-home {text-align: center; margin-top: 20px;}
+.back-btn { display: inline-block; text-align: center; padding: 8px 12px; background: var(--action); color: var(--white); border-radius: 4px; font-family: var(--font-body); text-decoration: none; font-size: 0.9rem; margin-bottom: 20px; transition: var(--transition);}
+.back-btn:hover { background: var(--accent); color: var(--white); transform: translateY(-2px); box-shadow: var(--hard-shadow); }
 
-/* BENTO GRID */
-.bento-grid {
-    display: grid;
-    /* Ubah 320px menjadi 1fr agar memenuhi lebar layar pada mobile */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px;
-    width: 100%;
-}
-
-.bento-item {
-    background: var(--glass);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 45px 35px; /* Padding dalam diperbesar agar teks bernapas */
-    text-align: center;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 220px;
-}
-
-.bento-item:not(.no-hover):hover {
-    transform: translateY(-12px);
-    border-color: var(--gold);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-/* SIDE SLOT ITEMS */
-.side-slot-item {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
-    border-radius: 18px;
-    padding: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    transition: 0.3s;
-}
-
-.side-slot-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--gold);
-    transform: translateY(-8px);
-}
-
-.item-info-row h3 { font-size: 1.1rem; font-weight: 800; }
-.item-info-row h4 { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; text-align: left;}
-
-/* UTILS */
-.icon-box { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
-.card-header { 
-    font-weight: 800; color: var(--gold); 
-    margin-bottom: 25px; display: flex; 
-    align-items: center; gap: 10px; 
-    text-transform: uppercase; font-size: 0.9rem;
-}
-
-/* SCHEDULE */
-.pensi-schedule .s-item {
-    display: flex;
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-size: 0.95rem;
-}
-.pensi-schedule span { min-width: 120px; color: var(--gold); font-weight: 700; }
-
-/* BUTTONS */
-.btn-action-small {
-    background: var(--gold);
-    color: white;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-weight: 800;
-    font-size: 0.85rem;
-    transition: 0.3s;
-}
-.btn-action-small:hover { background: var(--white); color: var(--primary); transform: scale(1.05); }
-
-/* MISC */
-.p-small { font-size: 0.9rem; line-height: 1.5; opacity: 0.8; }
-.deadline { color: #ff4d4d; font-weight: 800; margin: 15px 0; font-size: 1rem; }
-.example-box { 
-    background: rgba(255,255,255,0.03); 
-    padding: 20px; 
-    border-radius: 15px; 
-    font-size: 0.85rem; 
-    border-left: 4px solid var(--gold);
-    margin-top: 20px;
-}
-.forbidden-tags { display: flex; gap: 12px; justify-content: center; margin-top: 15px; }
-.forbidden-tags span { background: rgba(231, 76, 60, 0.1); color: #ff4d4d; padding: 6px 18px; border-radius: 8px; font-weight: 800; font-size: 0.8rem; }
-.highlight-gold { border: 1px solid var(--gold) !important; }
-.important-notes {
-    background: rgba(241, 196, 15, 0.1);
-    border-left: 4px solid var(--gold);
-    padding: 20px;
-    border-radius: 12px;
-    text-align: left;
-    margin-top: 25px;
-}
-/* ANIMATION */
-.reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
-.active { opacity: 1; transform: translateY(0); }
-
-/* MOBILE RESPONSIVE */
-@media (max-width: 600px) {
-    body { padding: 30px 15px; }
-    .section-title h2 { font-size: 1.8rem; }
-    .pensi-schedule .s-item { flex-direction: column; gap: 5px; }
-    .side-slot-item { flex-direction: column; text-align: center; }
-    .item-info-row h4 { text-align: center; }
-    .bento-grid { gap: 20px; grid-template-columns: 1fr; }
-    .bento-item {
-        padding: 30px 20px; /* Sedikit perkecil padding dalam agar teks tidak terpotong */
-        min-height: auto;   /* Biarkan tinggi menyesuaikan konten */
-    }
-}
+.section-title .label {font-size: 1.4rem; font-family: var(--font-heading); color: var(--paper)}
+.section-title h2 {font-size: 2.5rem; font-family: var(--font-logo); font-weight: normal; color: var(--accent);}
+.pensi-section {margin-bottom: 40px;}
+.card-header {display: flex; align-items: left; gap: 10px; font-family: var(--font-heading); color: var(--accent); font-size: 1.5rem; margin-bottom: 15px;}
+.bento-item {background: var(--glass); border: 1px solid var(--fire); border-radius: 8px; padding: 20px; margin-bottom: 20px; margin-left: 20px; margin-right: 20px;}
+.item-info {display: flex; flex-direction: row; -webkit-text-stroke: 0.5px solid;}
+.item-info h3 {font-family: var(--font-heading); color: var(--accent); font-size: 1.8rem; font-weight: normal;}
+/* .item-info h3 {font-family: var(--font-heading); color: var(--accent); -webkit-text-stroke: 0.5px var(--black); font-size: 1.8rem; font-weight: normal;}  */
+.icon-box {color: var(--action); font-size: 1.8rem; margin-right: 10px;}
