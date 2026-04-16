@@ -43,7 +43,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body {background-color: var(--dark);  color: var(--white); font-family: var(--font-body);  line-height: 1.6;  font-weight: normal;  opacity: ; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+body {background-color: var(--dark);  color: var(--white); font-family: var(--font-body);  line-height: 1.6;  font-weight: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
 }
 
 /* --- NAVBAR --- */
@@ -88,7 +88,7 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 
 /* --- SECTIONS --- */
 .content-section { padding: 80px 8% 40px; }
-.section-title h2 { color: var(--fire); font-family: var(--font-logo); font-weight: normal; text-align: center; font-size: 2.5rem; margin-bottom: 10px; } 
+.section-title h2 { color: var(--fire); font-family: var(--font-logo); font-weight: normal; text-align: center; font-size: 2.5rem; margin-bottom: 10px; text-shadow:  0 0 1px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2)} 
 .section-title {font-family: var(--font-logo); text-align: center; font-size: 1rem; margin-bottom: 10px; }   
 .underline { width: 50px; height: 3px; background: var(--fire); margin: 10px auto; }
 
@@ -111,14 +111,13 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 .btn-expand {background: var(--glass); border: 1px solid var(--fire); color: var(--fire); padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;}
 .btn-expand:hover {background: var(--fire);color: white; border-color: var(--fire);}
 
-
 /* Sembunyikan konten tambahan */
-.rundown-extended {max-height: 0; overflow: visible; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);opacity: 0;}
+.rundown-extended {max-height: 0; overflow: visible; max-height: 0.6s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0;}
 
 /* Animasi Ikon saat Terbuka */
 .btn-expand i {transition: transform 0.4s;}
 .btn-expand.active i {transform: rotate(180deg);}
-.rundown-section { padding: 60px 8%; background: rgba(0,0,0,0.2); }
+.rundown-section { padding: 60px 8%; background:rgba(69, 65, 65, 0.2); }
 .timeline-wrapper { position: relative; max-width: 1500px; margin: 0 auto; padding-left: 30px; }
 .timeline-wrapper::before { content: ''; position: absolute; left: 30px; top: 0; bottom: 0; width: 2px; background: var(--glass-border); }
 .timeline-item { position: relative; padding-left: 4%; margin-bottom: 30px; }
