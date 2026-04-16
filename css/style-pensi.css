@@ -76,6 +76,7 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 .section-title h2 {font-size: 2.5rem; font-family: var(--font-logo); font-weight: normal; color: var(--accent);}
 .pensi-section {margin-bottom: 40px;}
 .card-header {display: flex; align-items: left; gap: 10px; font-family: var(--font-heading); color: var(--accent); font-size: 1.5rem; margin-bottom: 15px;}
+.card-header i {color: var(--action); font-size: 1.5rem;}
 .bento-item {background: var(--glass); border: 1px solid var(--fire); border-radius: 8px; padding: 20px; margin-bottom: 20px; margin-left: 20px; margin-right: 20px;}
 .item-info {display: flex; flex-direction: row; -webkit-text-stroke: 0.5px solid;}
 .item-info h3 {font-family: var(--font-heading); color: var(--accent); font-size: 1.8rem; font-weight: normal;}
