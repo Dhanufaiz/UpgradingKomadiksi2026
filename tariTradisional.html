@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tari tradisional</title>
+</head>
+<body>
+    <h2>Pengisian pentas-seni</h2>
+    <form id="my-form" method="POST" action="URL_WEB_APP_ANDA_DISINI">
+        <input type="text" name="nama" placeholder="Nama Lengkap" required>
+        <select name="bidang" id="bidang" required>
+            <option value="">--Pilih--</option>
+            <option value="Sekretaris umum">Sekretaris umum</option>
+            <option value="Bendahara umum">Bendahara umum</option>
+            <option value="Pengabdian masyarakat">pengabdian masyarakat</option>
+            <option value="Hubungan internal">Hubungan internal</option>
+            <option value="Hubungan eksternal">Hubungan eksternal</option>
+            <option value="Minat bakat">Minat & bakat</option>
+            <option value="Media dan informasi">Media dan informasi</option>
+        </select>
+        <select name="jenis" id="jenis" required>
+            <option value="">jenis pensi</option>
+            <option value="Tari tradisional"> Tari Tradisional</option>
+            <option value="Tari modern">Tari Modern</option>
+            <option value="Drama musikal">Drama Musikal</option>
+            <option value="Drama komedi">Drama Komedi</option>
+        </select>
+
+        <button type="submit">Kirim</button>
+    </form>
+
+    <script>
+        const scriptURL = 'URL_WEB_APP_ANDA_DISINI'
+        const form = document.getElementById('my-form')
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Terima kasih! Data berhasil dikirim."))
+            .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+</html>
