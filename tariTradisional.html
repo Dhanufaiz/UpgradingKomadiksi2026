@@ -45,57 +45,104 @@
 
         <button onclick="ambilData()">Refresh Data</button>
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxl5fRQ8BGAPhKnLPutnRKMZglf4EzhoTkl5lgkqJ6MZTfBwo4hfhOXXRgOuE0x2W3TUw/exec'
-        const form = document.getElementById('my-form')
+        // 1. KONFIGURASI
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxl5fRQ8BGAPhKnLPutnRKMZglf4EzhoTkl5lgkqJ6MZTfBwo4hfhOXXRgOuE0x2W3TUw/exec';
+        const form = document.getElementById('my-form');
+        const btnSubmit = document.getElementById('btn-submit');
+        const isiTabel = document.getElementById('isi-tabel');
 
-        form.addEventListener('submit', e => {
-          e.preventDefault()
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => alert("Terima kasih! Data berhasil dikirim."))
-            .catch(error => console.error('Error!', error.message))
-        })
+        // Batasan kuota (Harus sama dengan yang ada di Apps Script)
+        const limits = {
+            "Tari tradisional": 5,
+            "Tari modern": 5,
+            "Drama musikal": 3,
+            "Drama komedi": 3
+        };
 
-        function ambilData() {
-            const scriptURL = 'URL_WEB_APP_ANDA';
-            const limits = {
-                "Tari tradisional": 5,
-                "Tari modern": 5,
-                "Drama musikal": 3,
-                "Drama komedi": 3
-            };
-
+        // 2. FUNGSI AMBIL DATA & CEK KUOTA (GET)
+        function refreshData() {
             fetch(scriptURL)
                 .then(response => response.json())
                 .then(data => {
-                    // 1. Hitung jumlah pendaftar per kategori
-                    const rekap = {};
+                    // Tampilkan ke Tabel
+                    isiTabel.innerHTML = "";
+                    const rekap = {}; // Untuk hitung jumlah per jenis
+
                     data.forEach(item => {
+                        // Hitung jumlah pendaftar per jenis untuk limitasi
                         rekap[item.jenis] = (rekap[item.jenis] || 0) + 1;
+
+                        // Tambah baris ke tabel
+                        let row = `<tr>
+                            <td>${item.nama}</td>
+                            <td>${item.bidang}</td>
+                            <td>${item.jenis}</td>
+                        </tr>`;
+                        isiTabel.innerHTML += row;
                     });
 
-                    // 2. Cek setiap option di dropdown 'jenis'
-                    const selectJenis = document.getElementById('jenis');
-                    const options = selectJenis.options;
-
-                    for (let i = 0; i < options.length; i++) {
-                        const val = options[i].value;
-                        if (limits[val] !== undefined) {
-                            const jumlah = rekap[val] || 0;
-                            const sisa = limits[val] - jumlah;
-
-                            if (sisa <= 0) {
-                                options[i].disabled = true;
-                                options[i].text = val + " (PENUH)";
-                            } else {
-                                options[i].text = val + " (Sisa: " + sisa + ")";
-                            }
-                        }
-                    }
-                    
-                    // Render tabel pendaftar (seperti kode sebelumnya)
-                    renderTabel(data); 
+                    // Update Dropdown berdasarkan kuota
+                    updateDropdownLimits(rekap);
+                })
+                .catch(error => {
+                    console.error('Error saat ambil data:', error);
+                    isiTabel.innerHTML = "<tr><td colspan='3'>Gagal memuat data.</td></tr>";
                 });
         }
+
+        // 3. FUNGSI UPDATE DROPDOWN
+        function updateDropdownLimits(rekap) {
+            const selectJenis = document.getElementById('jenis');
+            const options = selectJenis.options;
+
+            for (let i = 0; i < options.length; i++) {
+                const val = options[i].value;
+                if (limits[val] !== undefined) {
+                    const terisi = rekap[val] || 0;
+                    const sisa = limits[val] - terisi;
+
+                    if (sisa <= 0) {
+                        options[i].disabled = true;
+                        options[i].text = val + " (PENUH)";
+                        options[i].classList.add('full');
+                    } else {
+                        options[i].disabled = false;
+                        options[i].text = val + " (Sisa: " + sisa + ")";
+                    }
+                }
+            }
+        }
+
+        // 4. FUNGSI KIRIM DATA (POST)
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = "Sedang Mengirim...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => response.json())
+                .then(result => {
+                    if (result.result === 'success') {
+                        alert("Berhasil mendaftar!");
+                        form.reset();
+                        refreshData(); // Segarkan tabel dan kuota
+                    } else {
+                        alert("Gagal: " + result.error);
+                    }
+                })
+                .catch(error => {
+                    alert("Terjadi kesalahan koneksi!");
+                    console.error('Error!', error.message);
+                })
+                .finally(() => {
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = "Kirim Pendaftaran";
+                });
+        });
+
+        // Jalankan saat pertama kali dibuka
+        window.onload = refreshData;
+
     </script>
 </body>
 </html>
