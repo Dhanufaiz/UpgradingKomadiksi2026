@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/form.css">
     <title>tari tradisional</title>
 </head>
 <body>
@@ -27,14 +28,13 @@
             <option value="Drama komedi">Drama Komedi</option>
         </select>
 
-        <button type="submit">Kirim</button>
+        <button type="submit" id="btn-submit">Kirim</button>
     </form>
     <hr>
         <h3>Daftar Pendaftar Pentas Seni</h3>
         <table border="1" id="tabel-data">
             <thead>
                 <tr>
-                    <th>Nama</th>
                     <th>Bidang</th>
                     <th>Jenis Pensi</th>
                 </tr>
@@ -74,7 +74,6 @@
 
                         // Tambah baris ke tabel
                         let row = `<tr>
-                            <td>${item.nama}</td>
                             <td>${item.bidang}</td>
                             <td>${item.jenis}</td>
                         </tr>`;
