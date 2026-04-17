@@ -29,7 +29,21 @@
 
         <button type="submit">Kirim</button>
     </form>
+    <hr>
+        <h3>Daftar Pendaftar Pentas Seni</h3>
+        <table border="1" id="tabel-data">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Bidang</th>
+                    <th>Jenis Pensi</th>
+                </tr>
+            </thead>
+            <tbody id="isi-tabel">
+                </tbody>
+        </table>
 
+        <button onclick="ambilData()">Refresh Data</button>
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxl5fRQ8BGAPhKnLPutnRKMZglf4EzhoTkl5lgkqJ6MZTfBwo4hfhOXXRgOuE0x2W3TUw/exec'
         const form = document.getElementById('my-form')
@@ -40,6 +54,34 @@
             .then(response => alert("Terima kasih! Data berhasil dikirim."))
             .catch(error => console.error('Error!', error.message))
         })
+
+        function ambilData() {
+            const isiTabel = document.getElementById('isi-tabel');
+            isiTabel.innerHTML = "<tr><td colspan='3'>Memuat data...</td></tr>";
+
+            fetch(scriptURL) // scriptURL adalah URL Web App yang sama
+                .then(response => response.json())
+                .then(data => {
+                    isiTabel.innerHTML = ""; // Bersihkan pesan memuat
+                    
+                    data.forEach(row => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${row.nama || '-'}</td>
+                            <td>${row.bidang || '-'}</td>
+                            <td>${row.jenis || '-'}</td>
+                        `;
+                        isiTabel.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    isiTabel.innerHTML = "<tr><td colspan='3'>Gagal mengambil data.</td></tr>";
+                });
+        }
+
+        // Jalankan fungsi saat halaman pertama kali dibuka
+        window.onload = ambilData;
     </script>
 </body>
 </html>
