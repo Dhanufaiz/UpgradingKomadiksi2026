@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+@font-face {
+    font-family: 'Lambada';
+    src: url('../font/Lambada/Lambada/Lambada.otf') format('opentype');
+    font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'Railey';
+    src: url('../font/railey/Railey-PersonalUse.ttf') format('truetype');
+    font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'KG Primary';
+    src: url('../font/kg_primary_penmanship/KGPrimaryPenmanship.ttf') format('truetype');
+    font-weight: normal; font-style: normal; font-display: swap;
+}
+
+/* --- 2. GLOBAL VARIABLES --- */
+:root {
+    /* Colors from style.css */
+    --primary: #2D3629;      
+    --paper: #DED6C5;        
+    --accent: #8E6E43;       
+    --action: #436D7D;       
+    --fire: #A65D2E;         
+    --wood: #5C4033;         
+    --dark: #1E231C;         
+    --white: #ffffff;
+    
+    /* Typography */
+    --font-heading: 'Railey', 'cursive';
+    --font-logo: 'Lambada', serif;
+    --font-body: 'KG Primary', sans-serif;
+    
+    /* Layout Patterns from style_1 */
+    --glass: rgba(222, 214, 197, 0.15);
+    --glass-border: rgba(92, 64, 51, 0.2);
+    --hard-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    background-color: var(--primary);
+    /* Gunakan background image hero yang kemarin jika ingin lebih keren */
+    background-image: linear-gradient(rgba(36, 43, 33, 0.8), rgba(36, 43, 33, 0.8)), url('../img/hero-bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: var(--font-body);
+    color: var(--paper);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+h2, h3 {
+    font-family: var(--font-logo);
+    font-weight: normal;
+    text-shadow: 0 0 15px rgba(229, 221, 208, 0.3);
+    margin-bottom: 20px;
+}
+
+h2 { font-size: 3rem; color: var(--paper); }
+h3 { font-size: 2.2rem; color: var(--accent); margin-top: 50px; }
+
+/* --- FORM STYLING --- */
+#my-form {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+input, select {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background: white;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--fire);
+    box-shadow: 0 0 8px rgba(181, 101, 53, 0.3);
+}
+
+button {
+    background: var(--fire);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #964d26;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:disabled {
+    background: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- TABLE STYLING --- */
+#tabel-data {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden; /* Biar border radius bekerja */
+    border: none;
+    margin-bottom: 20px;
+}
+
+#tabel-data thead {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+#tabel-data th, #tabel-data td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(229, 221, 208, 0.1);
+}
+
+#tabel-data tbody tr:hover {
+    background: rgba(229, 221, 208, 0.05);
+}
+
+/* Status Full/Penuh pada Dropdown */
+option.full {
+    color: #999;
+    font-style: italic;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+    h2 { font-size: 2.2rem; }
+    #my-form { padding: 20px; }
+    #tabel-data { font-size: 0.8rem; }
+}
