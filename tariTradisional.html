@@ -56,32 +56,46 @@
         })
 
         function ambilData() {
-            const isiTabel = document.getElementById('isi-tabel');
-            isiTabel.innerHTML = "<tr><td colspan='3'>Memuat data...</td></tr>";
+            const scriptURL = 'URL_WEB_APP_ANDA';
+            const limits = {
+                "Tari tradisional": 5,
+                "Tari modern": 5,
+                "Drama musikal": 3,
+                "Drama komedi": 3
+            };
 
-            fetch(scriptURL) // scriptURL adalah URL Web App yang sama
+            fetch(scriptURL)
                 .then(response => response.json())
                 .then(data => {
-                    isiTabel.innerHTML = ""; // Bersihkan pesan memuat
-                    
-                    data.forEach(row => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td>${row.nama || '-'}</td>
-                            <td>${row.bidang || '-'}</td>
-                            <td>${row.jenis || '-'}</td>
-                        `;
-                        isiTabel.appendChild(tr);
+                    // 1. Hitung jumlah pendaftar per kategori
+                    const rekap = {};
+                    data.forEach(item => {
+                        rekap[item.jenis] = (rekap[item.jenis] || 0) + 1;
                     });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    isiTabel.innerHTML = "<tr><td colspan='3'>Gagal mengambil data.</td></tr>";
+
+                    // 2. Cek setiap option di dropdown 'jenis'
+                    const selectJenis = document.getElementById('jenis');
+                    const options = selectJenis.options;
+
+                    for (let i = 0; i < options.length; i++) {
+                        const val = options[i].value;
+                        if (limits[val] !== undefined) {
+                            const jumlah = rekap[val] || 0;
+                            const sisa = limits[val] - jumlah;
+
+                            if (sisa <= 0) {
+                                options[i].disabled = true;
+                                options[i].text = val + " (PENUH)";
+                            } else {
+                                options[i].text = val + " (Sisa: " + sisa + ")";
+                            }
+                        }
+                    }
+                    
+                    // Render tabel pendaftar (seperti kode sebelumnya)
+                    renderTabel(data); 
                 });
         }
-
-        // Jalankan fungsi saat halaman pertama kali dibuka
-        window.onload = ambilData;
     </script>
 </body>
 </html>
