@@ -37,22 +37,23 @@
                 <tr>
                     <th>Bidang</th>
                     <th>Jenis Pensi</th>
+                    <th>waktu</th>
                 </tr>
             </thead>
             <tbody id="isi-tabel">
                 </tbody>
         </table>
 
-        <button onclick="ambilData()">Refresh Data</button>
+        <button onclick="refreshData()">Refresh Data</button>
     <script>
-        // 1. KONFIGURASI (GANTI URL INI)
+        // URL Web App Google Apps Script
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxl5fRQ8BGAPhKnLPutnRKMZglf4EzhoTkl5lgkqJ6MZTfBwo4hfhOXXRgOuE0x2W3TUw/exec';
         
         const form = document.getElementById('my-form');
         const btnSubmit = document.getElementById('btn-submit');
         const isiTabel = document.getElementById('isi-tabel');
 
-        // Definisi Limit Kuota Jenis Pensi
+        // Setting Limit per Jenis Pensi
         const kuotaJenis = {
             "Tari tradisional": 1,
             "Tari modern": 2,
@@ -60,100 +61,102 @@
             "Drama komedi": 2
         };
 
-        // 2. FUNGSI UTAMA: AMBIL DATA & UPDATE LIMIT
+        // 1. Fungsi Mengambil Data & Mengunci Pilihan (GET)
         function refreshData() {
-            fetch(scriptURL)
-                .then(response => response.json())
-                .then(data => {
-                    isiTabel.innerHTML = "";
-                    
-                    const rekapJenis = {};  // Untuk menghitung jumlah per jenis
-                    const bidangTerisi = []; // Untuk mencatat bidang yang sudah daftar
+        fetch(scriptURL)
+            .then(response => response.json())
+            .then(data => {
+                isiTabel.innerHTML = "";
+                const rekapJenis = {};
+                const bidangTerisi = [];
 
-                    data.forEach(item => {
-                        // Hitung jumlah untuk limit jenis
-                        rekapJenis[item.jenis] = (rekapJenis[item.jenis] || 0) + 1;
-                        
-                        // Catat bidang untuk limit bidang
-                        bidangTerisi.push(item.bidang);
+                // Pastikan kolom di Sheets bernama 'Date' agar sorting ini bekerja
+                data.sort((a, b) => new Date(b.Date) - new Date(a.Date));
 
-                        // Render ke tabel
-                        let row = `<tr>
-                            <td>${item.bidang}</td>
-                            <td>${item.jenis}</td>
-                        </tr>`;
-                        isiTabel.innerHTML += row;
-                    });
+                data.forEach(item => {
+                    rekapJenis[item.jenis] = (rekapJenis[item.jenis] || 0) + 1;
+                    bidangTerisi.push(item.bidang);
 
-                    // Jalankan fungsi pengunci pilihan
-                    terapkanLimitasi(rekapJenis, bidangTerisi);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    isiTabel.innerHTML = "<tr><td colspan='3'>Gagal memuat data.</td></tr>";
+                    // LOGIKA PERBAIKAN WAKTU:
+                    // Jika di Sheets kolomnya bernama 'Date', maka gunakan item.Date
+                    const waktuData = item.Date || item.date; // Antisipasi huruf kecil
+                    const waktu = waktuData ? new Date(waktuData).toLocaleTimeString('id-ID') : '-';
+
+                    let row = `<tr>
+                        <td>${item.bidang || '-'}</td>
+                        <td>${item.jenis || '-'}</td>
+                        <td>${waktu}</td>
+                    </tr>`;
+                    isiTabel.innerHTML += row;
                 });
-        }
 
-        // 3. FUNGSI PENGUNCI (LIMITASI)
-        function terapkanLimitasi(rekapJenis, bidangTerisi) {
-            // --- Limitasi Bidang (Hanya 1x) ---
-            const optionsBidang = document.getElementById('bidang').options;
-            for (let i = 0; i < optionsBidang.length; i++) {
-                const valB = optionsBidang[i].value;
-                if (bidangTerisi.includes(valB)) {
-                    optionsBidang[i].disabled = true;
-                    optionsBidang[i].text = valB + " (SUDAH DAFTAR)";
+                updateSelectionLimits(rekapJenis, bidangTerisi);
+            })
+            // ... (sisa kode tetap sama) ...
+    }
+        // 2. Fungsi Logika Limit (Visual)
+        function updateSelectionLimits(rekapJenis, bidangTerisi) {
+            // Update Limit Bidang
+            const optBidang = document.getElementById('bidang').options;
+            for (let i = 0; i < optBidang.length; i++) {
+                if (bidangTerisi.includes(optBidang[i].value)) {
+                    optBidang[i].disabled = true;
+                    optBidang[i].text = optBidang[i].value + " (SUDAH DAFTAR)";
                 }
             }
 
-            // --- Limitasi Jenis Pensi (Kuota) ---
-            const optionsJenis = document.getElementById('jenis').options;
-            for (let j = 0; j < optionsJenis.length; j++) {
-                const valJ = optionsJenis[j].value;
-                if (kuotaJenis[valJ] !== undefined) {
-                    const terisi = rekapJenis[valJ] || 0;
-                    const sisa = kuotaJenis[valJ] - terisi;
-
+            // Update Limit Jenis Pensi
+            const optJenis = document.getElementById('jenis').options;
+            for (let j = 0; j < optJenis.length; j++) {
+                const val = optJenis[j].value;
+                if (kuotaJenis[val]) {
+                    const sisa = kuotaJenis[val] - (rekapJenis[val] || 0);
                     if (sisa <= 0) {
-                        optionsJenis[j].disabled = true;
-                        optionsJenis[j].text = valJ + " (PENUH)";
+                        optJenis[j].disabled = true;
+                        optJenis[j].text = val + " (PENUH)";
                     } else {
-                        optionsJenis[j].disabled = false;
-                        optionsJenis[j].text = valJ + " (Sisa: " + sisa + ")";
+                        optJenis[j].disabled = false;
+                        optJenis[j].text = val + " (Sisa: " + sisa + ")";
                     }
                 }
             }
         }
 
-        // 4. FUNGSI KIRIM DATA
+        // 3. Fungsi Kirim Data (POST)
         form.addEventListener('submit', e => {
             e.preventDefault();
+            
+            // Langsung disable tombol agar tidak double-click saat war
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = "Sedang Mengirim...";
+            btnSubmit.innerHTML = "Memproses Antrean...";
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => response.json())
                 .then(result => {
                     if (result.result === 'success') {
-                        alert("Berhasil mendaftar!");
+                        alert("SELAMAT! Pendaftaran Anda berhasil masuk.");
                         form.reset();
-                        refreshData(); // Refresh otomatis agar limit terupdate
+                        refreshData();
                     } else {
-                        alert("Gagal: " + result.error);
+                        alert("GAGAL: " + result.error);
+                        refreshData();
                     }
                 })
                 .catch(error => {
-                    alert("Kesalahan koneksi!");
+                    alert("Koneksi sibuk/terputus. Silakan coba lagi.");
                     console.error('Error!', error.message);
                 })
                 .finally(() => {
                     btnSubmit.disabled = false;
-                    btnSubmit.innerHTML = "Kirim Pendaftaran";
+                    btnSubmit.innerHTML = "KIRIM PENDAFTARAN";
                 });
         });
 
-        // Jalankan saat load pertama kali
+        // Jalankan refresh data saat halaman dibuka
         window.onload = refreshData;
+
+        // Opsional: Auto-refresh tabel setiap 10 detik agar peserta bisa lihat pergerakan war
+        setInterval(refreshData, 10000);
     </script>
 </body>
 </html>
