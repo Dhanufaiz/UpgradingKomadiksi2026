@@ -45,34 +45,39 @@
 
         <button onclick="ambilData()">Refresh Data</button>
     <script>
-        // 1. KONFIGURASI
+        // 1. KONFIGURASI (GANTI URL INI)
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxl5fRQ8BGAPhKnLPutnRKMZglf4EzhoTkl5lgkqJ6MZTfBwo4hfhOXXRgOuE0x2W3TUw/exec';
+        
         const form = document.getElementById('my-form');
         const btnSubmit = document.getElementById('btn-submit');
         const isiTabel = document.getElementById('isi-tabel');
 
-        // Batasan kuota (Harus sama dengan yang ada di Apps Script)
-        const limits = {
+        // Definisi Limit Kuota Jenis Pensi
+        const kuotaJenis = {
             "Tari tradisional": 1,
             "Tari modern": 2,
             "Drama musikal": 2,
             "Drama komedi": 2
         };
 
-        // 2. FUNGSI AMBIL DATA & CEK KUOTA (GET)
+        // 2. FUNGSI UTAMA: AMBIL DATA & UPDATE LIMIT
         function refreshData() {
             fetch(scriptURL)
                 .then(response => response.json())
                 .then(data => {
-                    // Tampilkan ke Tabel
                     isiTabel.innerHTML = "";
-                    const rekap = {}; // Untuk hitung jumlah per jenis
+                    
+                    const rekapJenis = {};  // Untuk menghitung jumlah per jenis
+                    const bidangTerisi = []; // Untuk mencatat bidang yang sudah daftar
 
                     data.forEach(item => {
-                        // Hitung jumlah pendaftar per jenis untuk limitasi
-                        rekap[item.jenis] = (rekap[item.jenis] || 0) + 1;
+                        // Hitung jumlah untuk limit jenis
+                        rekapJenis[item.jenis] = (rekapJenis[item.jenis] || 0) + 1;
+                        
+                        // Catat bidang untuk limit bidang
+                        bidangTerisi.push(item.bidang);
 
-                        // Tambah baris ke tabel
+                        // Render ke tabel
                         let row = `<tr>
                             <td>${item.bidang}</td>
                             <td>${item.jenis}</td>
@@ -80,39 +85,47 @@
                         isiTabel.innerHTML += row;
                     });
 
-                    // Update Dropdown berdasarkan kuota
-                    updateDropdownLimits(rekap);
+                    // Jalankan fungsi pengunci pilihan
+                    terapkanLimitasi(rekapJenis, bidangTerisi);
                 })
                 .catch(error => {
-                    console.error('Error saat ambil data:', error);
+                    console.error('Error:', error);
                     isiTabel.innerHTML = "<tr><td colspan='3'>Gagal memuat data.</td></tr>";
                 });
         }
 
-        // 3. FUNGSI UPDATE DROPDOWN
-        function updateDropdownLimits(rekap) {
-            const selectJenis = document.getElementById('jenis');
-            const options = selectJenis.options;
+        // 3. FUNGSI PENGUNCI (LIMITASI)
+        function terapkanLimitasi(rekapJenis, bidangTerisi) {
+            // --- Limitasi Bidang (Hanya 1x) ---
+            const optionsBidang = document.getElementById('bidang').options;
+            for (let i = 0; i < optionsBidang.length; i++) {
+                const valB = optionsBidang[i].value;
+                if (bidangTerisi.includes(valB)) {
+                    optionsBidang[i].disabled = true;
+                    optionsBidang[i].text = valB + " (SUDAH DAFTAR)";
+                }
+            }
 
-            for (let i = 0; i < options.length; i++) {
-                const val = options[i].value;
-                if (limits[val] !== undefined) {
-                    const terisi = rekap[val] || 0;
-                    const sisa = limits[val] - terisi;
+            // --- Limitasi Jenis Pensi (Kuota) ---
+            const optionsJenis = document.getElementById('jenis').options;
+            for (let j = 0; j < optionsJenis.length; j++) {
+                const valJ = optionsJenis[j].value;
+                if (kuotaJenis[valJ] !== undefined) {
+                    const terisi = rekapJenis[valJ] || 0;
+                    const sisa = kuotaJenis[valJ] - terisi;
 
                     if (sisa <= 0) {
-                        options[i].disabled = true;
-                        options[i].text = val + " (PENUH)";
-                        options[i].classList.add('full');
+                        optionsJenis[j].disabled = true;
+                        optionsJenis[j].text = valJ + " (PENUH)";
                     } else {
-                        options[i].disabled = false;
-                        options[i].text = val + " (Sisa: " + sisa + ")";
+                        optionsJenis[j].disabled = false;
+                        optionsJenis[j].text = valJ + " (Sisa: " + sisa + ")";
                     }
                 }
             }
         }
 
-        // 4. FUNGSI KIRIM DATA (POST)
+        // 4. FUNGSI KIRIM DATA
         form.addEventListener('submit', e => {
             e.preventDefault();
             btnSubmit.disabled = true;
@@ -124,13 +137,13 @@
                     if (result.result === 'success') {
                         alert("Berhasil mendaftar!");
                         form.reset();
-                        refreshData(); // Segarkan tabel dan kuota
+                        refreshData(); // Refresh otomatis agar limit terupdate
                     } else {
                         alert("Gagal: " + result.error);
                     }
                 })
                 .catch(error => {
-                    alert("Terjadi kesalahan koneksi!");
+                    alert("Kesalahan koneksi!");
                     console.error('Error!', error.message);
                 })
                 .finally(() => {
@@ -139,9 +152,8 @@
                 });
         });
 
-        // Jalankan saat pertama kali dibuka
+        // Jalankan saat load pertama kali
         window.onload = refreshData;
-
     </script>
 </body>
 </html>
