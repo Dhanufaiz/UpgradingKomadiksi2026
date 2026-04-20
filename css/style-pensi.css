@@ -103,8 +103,6 @@ body {
     }
 }
 
-
-
 .back-btn {
     color: var(--paper); 
     background-color: var(--action);
@@ -257,6 +255,45 @@ body {
     border-color: var(--accent);
 }
 
+/* Gaya Overlay Countdown */
+#countdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(45, 54, 41, 0.98); /* Warna --primary yang pekat */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    z-index: 10;
+    color: var(--paper);
+    border: 2px dashed var(--accent);
+}
+
+.countdown-text {
+    font-family: var(--font-logo);
+    font-weight: normal;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.timer-bold {
+    font-family: var(--font-body);
+    font-size: 2.5rem;
+    color: var(--fire);
+    letter-spacing: 3px;
+    font-weight: normal;
+}
+
+/* Sembunyikan konten formulir saat countdown aktif */
+.hidden-content {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
 .highlight-gold {
     background: var(--white);
     color: var(--wood);
@@ -402,7 +439,7 @@ body {
 .pensi-footer {
     text-align: center;
     padding: 3rem 0;
-    color: var(--wood);
+    color: var(--paper);
     font-size: 0.9rem;
 }
 
@@ -414,7 +451,10 @@ body {
         gap: 15px;
     }
     
+    .section-title .label {
+        font-size: 1.4rem;
+    }
     .section-title h2 {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
     }
 }

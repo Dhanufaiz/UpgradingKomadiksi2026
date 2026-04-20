@@ -108,13 +108,21 @@
                         <span>Drama Komedi</span>
                     </div>
                 </div>
-                <div class="bento-grid">
-                    <div class="side-slot-item">
-                        <div class="item-info-row">
-                            <h3>FORMULIR PENGISIAN PENTAS SENI</h3>
-                            <h4>Pengisian dilakukan oleh 1 perwakilan setiap bidang</h4>
+                
+                <div id="pensi-form-wrapper" style="position: relative;">
+                    <div class="bento-grid" id="pensi-form-content">
+                        <div class="side-slot-item">
+                            <div class="item-info-row">
+                                <h3>FORMULIR PENGISIAN PENTAS SENI</h3>
+                                <h4>Pengisian dilakukan oleh 1 perwakilan setiap bidang</h4>
+                            </div>
+                            <a class="btn-action-small" href="formPensi.html" target="_blank">PILIH</a>
                         </div>
-                        <a class="btn-action-small" href="formPensi.html" target="_blank">ISI</a>
+                    </div>
+
+                    <div id="countdown-overlay" class="countdown-style">
+                        <div class="countdown-text">PEMILIHAN DIMULAI DALAM:</div>
+                        <div id="timer" class="timer-bold">00:00:00:00</div>
                     </div>
                 </div>
             </div>
@@ -164,52 +172,52 @@
                     <tbody>
                         <tr>
                             <td rowspan="3" class="main-cat">Kekompakan</td>
-                            <td>a. Harmonisasi Gerak dan Vokal</td>
+                            <td>Harmonisasi Gerak dan Vokal</td>
                             <td>15%</td>
                             <td rowspan="3" class="total-cat">45%</td>
                         </tr>
                         <tr>
-                            <td>b. Penguasaan Panggung & Ekspresi Pennjiwaan</td>
+                            <td>Penguasaan Panggung & Ekspresi Pennjiwaan</td>
                             <td>15%</td>
                         </tr>
                         <tr>
-                            <td>c. Chemistry</td>
+                            <td>Chemistry</td>
                             <td>15%</td>
                         </tr>
 
                         <tr>
                             <td rowspan="3" class="main-cat">Teknis</td>
-                            <td>a. Kekuatan & Gaya tubuh</td>
+                            <td>Kekuatan & Gaya tubuh</td>
                             <td>15%</td>
                             <td rowspan="3" class="total-cat">25%</td>
                         </tr>
                         <tr>
-                            <td>b. Transisi adegan</td>
+                            <td>Transisi adegan</td>
                             <td>5%</td>
                         </tr>
                         <tr>
-                            <td>c. Artikulasi & Kejelasan Pesan</td>
+                            <td>Artikulasi & Kejelasan Pesan</td>
                             <td>5%</td>
                         </tr>
 
                         <tr>
                             <td rowspan="2" class="main-cat">Kreativitas</td>
-                            <td>a. Konsep & Ide Cerita</td>
+                            <td>Konsep & Ide Cerita</td>
                             <td>10%</td>
                             <td rowspan="2" class="total-cat">20%</td>
                         </tr>
                         <tr>
-                            <td>b. Relevansi Tema Pentas Seni</td>
+                            <td>Relevansi Tema Pentas Seni</td>
                             <td>10%</td>
                         </tr>
                         <tr>
                             <td rowspan="2" class="main-cat">Kedisiplinan</td>
-                            <td>a. Manajemen Durasi (7-10 Menit)</td>
+                            <td>Manajemen Durasi (7-10 Menit)</td>
                             <td>5%</td>
                             <td rowspan="2" class="total-cat">10%</td>
                         </tr>
                         <tr>
-                            <td>b. Efisiensi Persiapan & Clearing</td>
+                            <td>Efisiensi Persiapan & Clearing</td>
                             <td>5%</td>
                         </tr>
                     </tbody>
@@ -240,6 +248,30 @@
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            
+            const targetDate = new Date("April 24, 2026 19:00:00").getTime();
+
+    const countdownFunction = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // Hitungan waktu
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        // Jika waktu habis
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.getElementById("countdown-overlay").style.display = "none";
+            document.getElementById("pensi-form-content").classList.remove("hidden-content");
+        } else {
+            document.getElementById("pensi-form-content").classList.add("hidden-content");
+        }
+    }, 1000);
         });
     </script>
 </body>
