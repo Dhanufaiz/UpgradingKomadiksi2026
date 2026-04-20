@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="motto-section">
-                <p>BERPRESTASI, MENGABDI<br>UNTUK NEGERI</p>
+                BERPRESTASI, MENGABDI<br>UNTUK NEGERI
             </div>
         </div>
     </header>
@@ -32,10 +32,8 @@
         <div class="back-home">
             <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Kembali ke Booklet</a>
         </div>
+        
         <header class="pensi-header reveal">
-            <div class="element">
-                <img src="img/leaf_2.png" alt="Background" class="leaf-2">
-            </div>
             <div class="section-title">
                 <p class="label">TECHNICAL HANDBOOK</p>
                 <h2>TEKNIS PENAMPILAN PENSI</h2>
@@ -44,15 +42,35 @@
         </header>
 
         <section class="pensi-section reveal">
-            <div class="bento-item no-hover">
+            <div class="bento-item">
                 <div class="card-header">
                     <i class="fa-solid fa-clock"></i> 
                     Timeline Pelaksanaan
+                    <i class="fa-solid fa-clock"></i> 
                 </div>
                 <div class="pensi-schedule">
-                    <div class="s-item"><span>19.30 - 20.00</span><p>Persiapan Pensi</p></div>
-                    <div class="s-item"><span>20.00 - 20.15</span><p>Pembukaan Pensi</p></div>
-                    <div class="s-item"><span>20.15 - 21.30</span><p>Sesi Penampilan (Main Event)</p></div>
+                    <table border="1" id="table-pensi">
+                        <thead>
+                            <tr>
+                                <th>Waktu</th>
+                                <th>Kegiatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>19.30-20.00</td>
+                                <td>Persiapan Pensi</td>
+                            </tr>
+                            <tr>
+                                <td>20.00-20.15</td>
+                                <td>Pembukaan Pensi</td>
+                            </tr>
+                            <tr>
+                                <td>20.15-21.30</td>
+                                <td>Pelaksanaan Pensi</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -60,24 +78,26 @@
         <section class="pensi-section reveal">
             <div class="bento-grid">
                 <div class="bento-item">
-                    <div class="item-info">
+                    <div class="card-header">
                         <div class="icon-box"><i class="fa-solid fa-hourglass-half"></i></div>
-                        <h3>Durasi</h3>
+                        Durasi
+                        <div class="icon-box"><i class="fa-solid fa-hourglass-half"></i></div>
                     </div>
-                    <p>Minimal 7 menit dan maksimal 10 menit per bidang.</p>
+                    <p>Setiap bidang akan diberi waktu sebanyak 8-10 menit. durasi waktu akan berpengaruh terhadap penilaian.</p>
                 </div>
                 <div class="bento-item">
-                    <div class="item-info">
+                    <div class="card-header">
                         <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
-                        <h3>Sistem Pemilihan</h3>
+                        Sistem Pemilihan
+                        <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
                     </div>
-                    <p>Mengisi link sesuai jenis pentas seni di bawah ini.</p>
+                    <p>Setiap perwakilan bidang akan mengisi formulir pengisian di bawah. setiap bidang hanya bisa memilih 1 (satu) jenis pentas seni. Pemilihan Pentas seni akan dilaksanakan secara serentak pada tanggal 24 April 2026 Pukul  19.00</p>
                 </div>
             </div>
         </section>
 
         <section class="pensi-section reveal">
-            <div class="bento-item no-hover">
+            <div class="bento-item">
                 <div class="card-header"><i class="fa-solid fa-layer-group"></i> Jenis Pensi & Kuota</div>
                 <div class="example-box">
                     <p>akan ada 4 kategori pentas seni yang dapat dipilih, yaitu:</p>
@@ -94,11 +114,9 @@
                             <h3>FORMULIR PENGISIAN PENTAS SENI</h3>
                             <h4>Pengisian dilakukan oleh 1 perwakilan setiap bidang</h4>
                         </div>
-                        <a class="btn-action-small" href="formPensi.html" target="_blank">PILIH</a>
+                        <a class="btn-action-small" href="formPensi.html" target="_blank">ISI</a>
                     </div>
                 </div>
-
-
             </div>
         </section>
 
@@ -127,16 +145,83 @@
                 </div>
             </div>
         </section>
-
         <section class="pensi-section reveal">
             <div class="bento-item no-hover">
-                <div class="card-header"><i class="fa-solid fa-triangle-exclamation"></i> Kriteria Penilaian</div>
-                <ul class="important-notes">
-                    <li><span>Kreativitas</span>: konsep dan performa. (20%)</li>
-                    <li><span>Teknis</span>: Penguasaan panggung dan kualitas vokal/gerak. (25%)</li>
-                    <li><span>Kekompakan</span>: Harmonisasi antar anggota tim. (35%)</li>
-                    <li><span>Kostum</span>: Kesesuaian estetika dengan tema yang dipilih. (20%)</li>                </ul>
+                <div class="card-header">
+                    <i class="fa-solid fa-clipboard-check"></i> 
+                    Parameter Penilaian Pentas Seni
+                </div>
+                
+                <table id="table-penilaian">
+                    <thead>
+                        <tr>
+                            <th>Kategori Utama</th>
+                            <th>Sub-Kriteria Penilaian</th>
+                            <th>Bobot</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="3" class="main-cat">Kekompakan</td>
+                            <td>a. Harmonisasi Gerak dan Vokal</td>
+                            <td>15%</td>
+                            <td rowspan="3" class="total-cat">45%</td>
+                        </tr>
+                        <tr>
+                            <td>b. Penguasaan Panggung & Ekspresi Pennjiwaan</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td>c. Chemistry</td>
+                            <td>15%</td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="3" class="main-cat">Teknis</td>
+                            <td>a. Kekuatan & Gaya tubuh</td>
+                            <td>15%</td>
+                            <td rowspan="3" class="total-cat">25%</td>
+                        </tr>
+                        <tr>
+                            <td>b. Transisi adegan</td>
+                            <td>5%</td>
+                        </tr>
+                        <tr>
+                            <td>c. Artikulasi & Kejelasan Pesan</td>
+                            <td>5%</td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2" class="main-cat">Kreativitas</td>
+                            <td>a. Konsep & Ide Cerita</td>
+                            <td>10%</td>
+                            <td rowspan="2" class="total-cat">20%</td>
+                        </tr>
+                        <tr>
+                            <td>b. Relevansi Tema Pentas Seni</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="main-cat">Kedisiplinan</td>
+                            <td>a. Manajemen Durasi (7-10 Menit)</td>
+                            <td>5%</td>
+                            <td rowspan="2" class="total-cat">10%</td>
+                        </tr>
+                        <tr>
+                            <td>b. Efisiensi Persiapan & Clearing</td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3">TOTAL AKHIR</th>
+                            <th>100%</th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
+        </section>
         </section>
 
         <footer class="pensi-footer reveal">
