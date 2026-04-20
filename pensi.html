@@ -249,29 +249,62 @@
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
             
-            const targetDate = new Date("April 24, 2026 19:00:00").getTime();
+            const targetDate = new Date("April 24, 2026  19:00:00").getTime();
 
-    const countdownFunction = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+            const countdownFunction = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
 
-        // Hitungan waktu
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                // Hitungan waktu
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-        // Jika waktu habis
-        if (distance < 0) {
-            clearInterval(countdownFunction);
-            document.getElementById("countdown-overlay").style.display = "none";
-            document.getElementById("pensi-form-content").classList.remove("hidden-content");
-        } else {
-            document.getElementById("pensi-form-content").classList.add("hidden-content");
+                // Jika waktu habis
+                if (distance < 0) {
+                    clearInterval(countdownFunction);
+                    document.getElementById("countdown-overlay").style.display = "none";
+                    document.getElementById("pensi-form-content").classList.remove("hidden-content");
+                } else {
+                    document.getElementById("pensi-form-content").classList.add("hidden-content");
+                }
+            }, 1000);
+
+            function updateCountdowns() {
+            const overlays = document.querySelectorAll('.countdown-overlay');
+            
+            overlays.forEach(overlay => {
+                const targetTime = new Date(overlay.getAttribute('data-time')).getTime();
+                const timerDisplay = overlay.querySelector('.timer-display');
+                const content = overlay.parentElement.querySelector('.lock-content');
+                
+                const interval = setInterval(() => {
+                    const now = new Date().getTime();
+                    const distance = targetTime - now;
+
+                    if (distance < 0) {
+                        clearInterval(interval);
+                        overlay.style.display = 'none';
+                        if (content) content.classList.remove('is-locked');
+                        return;
+                    }
+
+                    if (content) content.classList.add('is-locked');
+
+                    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    timerDisplay.innerHTML = `${d}h ${h}m ${m}s ${s}s`;
+                }, 1000);
+            });
         }
-    }, 1000);
+
+        document.addEventListener('DOMContentLoaded', updateCountdowns);
         });
     </script>
 </body>

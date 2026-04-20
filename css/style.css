@@ -240,3 +240,64 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
     .footer-top, .gear-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
 }
+
+/* Container pembungkus agar konten di belakangnya bisa blur */
+.lock-wrapper {
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+/* Overlay Penutup */
+.countdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(40px);
+    opacity: 97%;
+    border: var(--fire) solid 3px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: var(--paper);
+}
+
+.lock-icon {
+    font-size: 3rem;
+    color: var(--fire);
+    margin-bottom: 15px;
+}
+
+.timer-display {
+    font-family: var(--font-logo); /* Gunakan font Lambada */
+    font-size: 2.5rem;
+    color: var(--paper);
+    text-shadow: 0 0 50px var(--dark);
+    letter-spacing: 2px;
+}
+
+/* Efek saat konten masih terkunci */
+.lock-content.is-locked {
+    pointer-events: none; /* Tidak bisa diklik */
+    user-select: none;    /* Tidak bisa di-copy */
+}
+
+/* Saat section sedang terkunci */
+.lock-wrapper.is-locked {
+    height: 300px; /* Paksa tinggi section jadi pendek */
+    overflow: hidden; /* Pastikan konten yang panjang tidak keluar */
+    display: flex;
+    align-items: center;
+    justify-content: center;/* Agar saat terbuka, transisinya mulus */
+}
+
+/* Saat kunci terbuka (lewat JavaScript) */
+.lock-wrapper:not(.is-locked) {
+    height: auto; /* Ukuran kembali normal sesuai isi konten */
+    padding-bottom: 50px;
+}
