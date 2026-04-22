@@ -269,7 +269,7 @@ body {
     align-items: center;
     border-radius: 15px;
     z-index: 10;
-    color: var(--paper);
+    color: var(--dark);
     border: 2px solid var(--accent);
 }
 
@@ -303,6 +303,7 @@ body {
 .card-header {
     display: flex;
     align-items: center;
+    text-align: center;
     gap: 10px;
     font-weight: bold;
     margin-bottom: 15px;
@@ -313,6 +314,11 @@ body {
     justify-content: center;
     background-color: var(--glass-border);
     border-radius: 10px;
+}
+
+.card-header h2 {
+    font-weight: normal;
+    font-size: 1rem;
 }
 
 .highlight-gold .card-header {
@@ -329,7 +335,7 @@ body {
     justify-content: center;
 }
 
-.pensi-tags {padding-bottom: 20px; font-family: var(--font-heading);}
+.pensi-tags {padding-bottom: 20px; font-family: var(--font-body);}
 
 .side-slot-item {
     background-color: var(--glass-border);
@@ -456,5 +462,9 @@ body {
     }
     .section-title h2 {
         font-size: 1.7rem;
+    }
+    
+    #table-penilaian {
+        font-size: 0.7rem;
     }
 }

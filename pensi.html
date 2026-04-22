@@ -102,10 +102,10 @@
                 <div class="example-box">
                     <p>akan ada 4 kategori pentas seni yang dapat dipilih, yaitu:</p>
                     <div class="pensi-tags">
-                        <span>Tari Tradisional</span>
-                        <span>Tari Modern</span>
-                        <span>Drama Musikal</span>
-                        <span>Drama Komedi</span>
+                        <span>Tari Tradisional (1 slot)</span>
+                        <span>Tari Modern (2 slot)</span>
+                        <span>Drama Musikal (2 slot)</span>
+                        <span>Drama Komedi (2 slot)</span>
                     </div>
                 </div>
                 
@@ -131,13 +131,13 @@
         <section class="pensi-section reveal">
             <div class="bento-grid">
                 <div class="bento-item highlight-gold">
-                    <div class="card-header"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Sound</div>
+                    <div class="card-header"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Sound <i class="fa-solid fa-cloud-arrow-up"></i></div>
                     <p class="p-small">Format: Nama Bidang_Jenis Pensi (MP3)</p>
                     <p class="deadline">Maksimal: 14 Mei 2024</p>
                     <a href="https://drive.google.com/drive/folders/1KZw7LpUhkkBA3rGdqhb1p_E982gsDGa2?usp=drive_link`" target="_blank" class="btn-action-small">Link G-Drive</a>
                 </div>
                 <div class="bento-item">
-                    <div class="card-header"><i class="fa-solid fa-box-open"></i> Logistik</div>
+                    <div class="card-header"><i class="fa-solid fa-box-open"></i> Logistik <i class="fa-solid fa-box-open"></i></div>
                     <p class="p-small">Segala peralatan seperti alat musik, kostum, dan properti disiapkan secara mandiri oleh setiap bidang.</p>
                 </div>
             </div>
@@ -145,7 +145,7 @@
 
         <section class="pensi-section reveal">
             <div class="bento-item forbidden-box">
-                <div class="card-header"><i class="fa-solid fa-shield-halved"></i>PENTAS SENI DILARANG MENGANDUNG UNSUR</div>
+                <div class="card-header"><i class="fa-solid fa-shield-halved"></i><h2>PENTAS SENI DILARANG MENGANDUNG UNSUR</h2><i class="fa-solid fa-shield-halved"></i></div>
                 <div class="forbidden-tags">
                     <span>SARA</span>
                     <span>Pornografi</span>
@@ -153,83 +153,86 @@
                 </div>
             </div>
         </section>
-        <section class="pensi-section reveal">
-            <div class="bento-item no-hover">
-                <div class="card-header">
-                    <i class="fa-solid fa-clipboard-check"></i> 
-                    Parameter Penilaian Pentas Seni
+        <section>
+            <div class="pensi-section reveal">
+                <div class="bento-grid">
+                    <div class="bento-item">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clipboard-check"></i> 
+                            <h2>Parameter Penilaian Pentas Seni</h2>
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                        <table id="table-penilaian">
+                            <thead>
+                                <tr>
+                                    <th>Kategori Utama</th>
+                                    <th>Sub-Kriteria Penilaian</th>
+                                    <th>Bobot</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3" class="main-cat">Kekompakan</td>
+                                    <td>Harmonisasi Gerak dan Vokal</td>
+                                    <td>15%</td>
+                                    <td rowspan="3" class="total-cat">45%</td>
+                                </tr>
+                                <tr>
+                                    <td>Penguasaan Panggung & Ekspresi Pennjiwaan</td>
+                                    <td>15%</td>
+                                </tr>
+                                <tr>
+                                    <td>Chemistry</td>
+                                    <td>15%</td>
+                                </tr>
+        
+                                <tr>
+                                    <td rowspan="3" class="main-cat">Teknis</td>
+                                    <td>Kekuatan & Gaya tubuh</td>
+                                    <td>15%</td>
+                                    <td rowspan="3" class="total-cat">25%</td>
+                                </tr>
+                                <tr>
+                                    <td>Transisi adegan</td>
+                                    <td>5%</td>
+                                </tr>
+                                <tr>
+                                    <td>Artikulasi & Kejelasan Pesan</td>
+                                    <td>5%</td>
+                                </tr>
+        
+                                <tr>
+                                    <td rowspan="2" class="main-cat">Kreativitas</td>
+                                    <td>Konsep & Ide Cerita</td>
+                                    <td>10%</td>
+                                    <td rowspan="2" class="total-cat">20%</td>
+                                </tr>
+                                <tr>
+                                    <td>Relevansi Tema Pentas Seni</td>
+                                    <td>10%</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" class="main-cat">Kedisiplinan</td>
+                                    <td>Manajemen Durasi (7-10 Menit)</td>
+                                    <td>5%</td>
+                                    <td rowspan="2" class="total-cat">10%</td>
+                                </tr>
+                                <tr>
+                                    <td>Efisiensi Persiapan & Clearing</td>
+                                    <td>5%</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="3">TOTAL AKHIR</th>
+                                    <th>100%</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
-                
-                <table id="table-penilaian">
-                    <thead>
-                        <tr>
-                            <th>Kategori Utama</th>
-                            <th>Sub-Kriteria Penilaian</th>
-                            <th>Bobot</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan="3" class="main-cat">Kekompakan</td>
-                            <td>Harmonisasi Gerak dan Vokal</td>
-                            <td>15%</td>
-                            <td rowspan="3" class="total-cat">45%</td>
-                        </tr>
-                        <tr>
-                            <td>Penguasaan Panggung & Ekspresi Pennjiwaan</td>
-                            <td>15%</td>
-                        </tr>
-                        <tr>
-                            <td>Chemistry</td>
-                            <td>15%</td>
-                        </tr>
-
-                        <tr>
-                            <td rowspan="3" class="main-cat">Teknis</td>
-                            <td>Kekuatan & Gaya tubuh</td>
-                            <td>15%</td>
-                            <td rowspan="3" class="total-cat">25%</td>
-                        </tr>
-                        <tr>
-                            <td>Transisi adegan</td>
-                            <td>5%</td>
-                        </tr>
-                        <tr>
-                            <td>Artikulasi & Kejelasan Pesan</td>
-                            <td>5%</td>
-                        </tr>
-
-                        <tr>
-                            <td rowspan="2" class="main-cat">Kreativitas</td>
-                            <td>Konsep & Ide Cerita</td>
-                            <td>10%</td>
-                            <td rowspan="2" class="total-cat">20%</td>
-                        </tr>
-                        <tr>
-                            <td>Relevansi Tema Pentas Seni</td>
-                            <td>10%</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2" class="main-cat">Kedisiplinan</td>
-                            <td>Manajemen Durasi (7-10 Menit)</td>
-                            <td>5%</td>
-                            <td rowspan="2" class="total-cat">10%</td>
-                        </tr>
-                        <tr>
-                            <td>Efisiensi Persiapan & Clearing</td>
-                            <td>5%</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="3">TOTAL AKHIR</th>
-                            <th>100%</th>
-                        </tr>
-                    </tfoot>
-                </table>
             </div>
-        </section>
         </section>
 
         <footer class="pensi-footer reveal">
