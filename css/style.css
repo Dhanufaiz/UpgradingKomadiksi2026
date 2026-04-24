@@ -232,7 +232,7 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 .social-links { display: flex; gap: 15px; font-size: 1.2rem; }
 .social-links a { color: white; }
 
-ANIMATION CLASSES
+/* ANIMATION CLASSES */
 .reveal { opacity: 0; transform: translateY(30px); transition: 0s all ease; }
 .reveal-left { opacity: 0; transform: translateX(-30px); transition: 1s all ease; }
 .reveal-right { opacity: 0; transform: translateX(30px); transition: 1s all ease; }

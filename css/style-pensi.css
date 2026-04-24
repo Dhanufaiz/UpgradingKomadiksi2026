@@ -468,3 +468,8 @@ body {
         font-size: 0.7rem;
     }
 }
+
+.contact-card-modern { background: var(--glass); color: var(--paper); border: 1px solid var(--glass-border); border-radius: 25px; padding: 50px; text-align: center; }
+.cp-group { display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+.cp-button { background: #25d366; color: white; text-decoration: none; padding: 12px 25px; border-radius: 50px; font-weight: normal; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+.cp-button:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37,211,102,0.3); }
