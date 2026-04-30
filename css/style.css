@@ -92,7 +92,7 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 .hero-background {display: none;}
 .hero-background-pc {position: absolute; top: -0%; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; z-index: -100; opacity: 0.2;}
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--dark) 100%); }
-.booklet-label { color: var(--white); letter-spacing: 4px; font-size: 0.8rem; font-weight: normal; }
+.booklet-label { color: var(--white); letter-spacing: 4px; font-size: 0.8rem; font-weight: normal;}
 .hero-text h1 { font-size: 3.2rem; font-weight: normal; margin: 10px 0; font-family: var(--font-logo); color: var(--paper); text-shadow:  0 0 10px rgba(32, 165, 172, 0.3), 0 0 20px rgba(34, 158, 0, 0.2);  /* Cahaya luar warna emas */}
 .highlight { color: var(--paper); }
 .subtitle { font-style: italic; opacity: 0.7; }
@@ -133,6 +133,9 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 .ticket-card { background: linear-gradient(90deg, var(--glass), var(--dark)); border: 5px solid var(--fire); }
 .ticket-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
 .full-width { grid-column: 1 / -1; }
+.sidebar-htm {display: flex; flex-direction: row; justify-content: center; gap: 20px;}
+.n-htm {background-color: var(--glass); border:2px solid var(--accent); padding-left: 20px; padding-right: 20px; border-radius: 8px; text-align: center; padding-top: 5px; padding-bottom: 5px;}
+
 @media (max-width: 768px) {
     .content-bg-leaf-2 {display: block; position: absolute; left: 0%;top: 3%; width: 100%; height: auto; object-fit: cover; object-position: center bottom; z-index: -1; opacity: 0.4; transform: scale(1.4) scaleX(-1);}
     .content-bg {transform: scale(3); top: 30%;}
@@ -140,7 +143,6 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
     .content-bg-bush-1 {display: block; position: absolute; left: 30%;top: 90%; width: 100%; ; object-fit: cover; object-position: center bottom; z-index: -1; opacity: 0.2; transform: scaleX(-1) scale(1.5);}
     .content-bg-mushroom {display: block; position: absolute; left: 40%;top: 60%; width: 100%; ; object-fit: cover; object-position: center bottom; z-index: -1; opacity: 0.1; transform: scaleX(-1) scale(1.5);}
 }
-/* RUNDOWN */
 
 /* Class saat aktif (dibuka via JS) */
 .rundown-extended.show {max-height: 1500px; opacity: 1;}
@@ -196,8 +198,9 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 
 /* --- PENSI NOTICE STYLING --- */
 .pensi-notice {background: var(--glass); border: 1px solid var(--fire); border-radius: 20px; padding: 25px; margin: 0 auto 40px; max-width: 850px; text-align: left; backdrop-filter: blur(10px); }
-.notice-header { display: flex; align-items: center; gap: 12px; color: var(--paper); font-weight: normal; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
+.notice-header { display: flex; align-items: center; gap: 12px; color: var(--fire); font-weight: normal; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
 .notice-body p {font-size: 0.95rem;margin-bottom: 20px; opacity: 0.9;}
+.notice-body span {color: var(--paper);}
 .notice-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;}
 .n-item { display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.05); padding: 12px; border-radius: 12px;}
 .n-item i {color: var(--fire);}
@@ -245,80 +248,148 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
     .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
 }
 
-/* Container Utama */
-.notice-body {
-    padding: 20px;
+/* Container pembungkus agar konten di belakangnya bisa blur */
+.lock-wrapper {
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+/* Overlay Penutup */
+
+.countdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(92, 64, 51, 0.2);
+    backdrop-filter: blur(40px);
+    opacity: 100%;
+    border: var(--fire) solid 3px;
+    border-radius: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 100;
+    color: var(--paper);
 }
 
-/* Grid Wrapper */
+.lock-icon {
+    font-size: 3rem;
+    color: var(--fire);
+    margin-bottom: 15px;
+}
+
+.timer-display {
+    font-family: var(--font-logo); /* Gunakan font Lambada */
+    font-size: 2.5rem;
+    color: var(--paper);
+    text-shadow: 0 0 50px var(--dark);
+    letter-spacing: 2px;
+}
+
+/* Efek saat konten masih terkunci */
+/* 
+.lock-content.is-locked {
+    pointer-events: none;
+    user-select: none;
+}
+
+.lock-wrapper.is-locked {
+    height: 300px; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* Saat kunci terbuka (lewat JavaScript) */
+
+/* .lock-wrapper:not(.is-locked) {
+    height: auto;
+    padding-bottom: 50px;
+}*/
+/* Container Utama */
 .notice-grid-rundown {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-/* Item Wrapper */
-.rd-items {
-    perspective: 10px;
-}
-
-/* Tombol Rundown Utama */
+/* Base Style Tombol Rundown */
 .btn-rd {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 25px;
+    gap: 12px;
+    padding: 14px 30px;
     
-    /* Gradasi Biru Komadiksi */
-    background: linear-gradient(135deg, var(--dark) 100%);
-    color: var(--paper);
+    /* Background: Biru khas Komadiksi dengan gradasi halus */
+    background: var(--fire);
+    color: #ffffff !important;
     
     text-decoration: none;
-    font-family: var(--font-logo);
-    font-weight: normal;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
     
-    border-radius: 50px; /* Lonjong elegan */
-    border: 2px solid transparent;
+    border-radius: 12px; /* Border sedikit kotak tapi tumpul (Modern Look) */
+    border: 1px solid rgba(255, 255, 255, 0.2);
     
-    /* Bayangan Halus */
-    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
-    transition: all 0.3s ease-in-out;
-    position: relative;
+    /* Efek Bayangan */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
+    cursor: pointer;
 }
 
-/* Efek Hover */
+/* Efek "Glow" di belakang tombol */
+.btn-rd::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    transition: 0.5s;
+}
+
+/* Hover State */
 .btn-rd:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.4);
-    background: linear-gradient(135deg, var(--fire) 100%);
-    border-color: #ffcc00; /* Aksen kuning saat hover */
+    transform: translateY(-5px) scale(1.02);
+
+    box-shadow: 0 15px 30px rgba(10, 56, 9, 0.4);
+    border-color: #ffcc00; /* Aksen Kuning saat hover */
+    color: # !important;
 }
 
-/* Styling Teks */
-.btn-rd span {
-    position: relative;
-    z-index: 1;
+.btn-rd:hover::before {
+    left: 100%;
 }
 
-/* Styling Ikon (FontAwesome) */
+/* Animasi Ikon */
 .btn-rd i {
+    font-size: 0.85rem;
     transition: transform 0.3s ease;
 }
 
 .btn-rd:hover i {
-    transform: translate(2px, -2px); /* Efek panah melompat sedikit */
-    color: #ffcc00;
+    transform: translate(3px, -3px); /* Ikon melompat keluar */
 }
 
-/* Responsif untuk Mobile */
-@media (max-width: 480px) {
-    .btn-rd {
-        padding: 10px 20px;
-        font-size: 0.8rem;
-    }
+/* Aktif/Klik */
+.btn-rd:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.underline {
+    width: 60px;
+    height: 4px;
+    background: #ffcc00;
+    margin: 0 auto 30px;
+    border-radius: 2px;
 }
