@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rundown Acara</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <section id="rundown" class="rundown-section">
+        <div class="overlay-rundown"></div>
+        <div class="section-title">
+            <h2>AGENDA ACARA</h2>
+            <div class="underline"></div>
+        </div>
+        
+        <div class="timeline-wrapper">
+            <!-- PASTIKAN ID DI BAWAH INI ADA -->
+            <ul class="timeline-list" id="rundown-container">
+                <!-- Data akan muncul di sini secara otomatis -->
+                <p style="text-align: center; color: gray;">Sedang memuat agenda...</p>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 1. Load Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+    <!-- 2. Script Logika -->
+    <script>
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRnQkFHXeqyTrpn8204bO16uypPi24Cs2b5Xhy-bkAAAw8RJpORIW1nmfxu6diry36X0KVRXz_X183T/pub?output=csv';
+
+        function initRundown() {
+            const container = document.getElementById('rundown-container');
+            
+            // Cek apakah elemen ada sebelum mulai
+            if (!container) {
+                console.error("Eror: Elemen 'rundown-container' tidak ditemukan di halaman.");
+                return;
+            }
+
+            Papa.parse(SHEET_URL, {
+                download: true,
+                header: true,
+                skipEmptyLines: true, // Abaikan baris kosong di spreadsheet
+                complete: function(results) {
+                    console.log("Data diterima:", results.data);
+                    
+                    let htmlContent = "";
+
+                    results.data.forEach(row => {
+                        // Sesuaikan nama kolom (Waktu, Dresscode, Kegiatan, Deskripsi) 
+                        // Harus persis dengan baris pertama di Google Sheets
+                        if (row['Waktu']) {
+                            htmlContent += `
+                                <li class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="time-tag">${row['Waktu']}</span>
+                                        <span class="dc">Dresscode: ${row['Dresscode'] || ''}</span>
+                                        <h3>${row['Kegiatan'] || 'Tanpa Judul'}</h3>
+                                        <p>${row['Deskripsi'] || ''}</p>
+                                    </div>
+                                </li>
+                            `;
+                        }
+                    });
+
+                    // Update isi container sekaligus
+                    container.innerHTML = htmlContent;
+                },
+                error: function(err) {
+                    container.innerHTML = "Gagal memuat data.";
+                    console.error("Gagal koneksi:", err);
+                }
+            });
+        }
+
+        // Jalankan HANYA setelah seluruh dokumen selesai dimuat
+        document.addEventListener('DOMContentLoaded', initRundown);
+    </script>
+
+</body>
+</html>

@@ -161,6 +161,7 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 .timeline-dot { position: absolute; left: -6px; top: 8px; width: 14px; height: 14px; background: var(--fire); border-radius: 50%; z-index: 2; border: 3px solid var(--dark);}
 .timeline-content { background: var(--glass); padding: 20px; border-radius: 15px; border: 1px solid var(--glass-border); }
 .time-tag { font-size: 0.75rem; background: var(--primary); padding: 4px 10px; border-radius: 5px; color: var(--paper); font-weight: normal; }
+.dc { font-size: 0.75rem; background: var(--dark); padding: 4px 10px; border-radius: 5px; color: var(--paper); font-weight: normal; }
 .pulse { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0.7); animation: pulse 1.5s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(145, 133, 90, 0); } 100% { box-shadow: 0 0 0 0 rgba(145, 133, 90, 0); } }
 
@@ -195,7 +196,7 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
 
 /* --- PENSI NOTICE STYLING --- */
 .pensi-notice {background: var(--glass); border: 1px solid var(--fire); border-radius: 20px; padding: 25px; margin: 0 auto 40px; max-width: 850px; text-align: left; backdrop-filter: blur(10px); }
-.notice-header { display: flex; align-items: center; gap: 12px; color: var(--fire); font-weight: normal; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
+.notice-header { display: flex; align-items: center; gap: 12px; color: var(--paper); font-weight: normal; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
 .notice-body p {font-size: 0.95rem;margin-bottom: 20px; opacity: 0.9;}
 .notice-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;}
 .n-item { display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.05); padding: 12px; border-radius: 12px;}
@@ -244,63 +245,80 @@ body {background-color: var(--dark);  color: var(--white); font-family: var(--fo
     .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
 }
 
-/* Container pembungkus agar konten di belakangnya bisa blur */
-.lock-wrapper {
-    overflow: hidden;
-    border-radius: 20px;
-}
-
-/* Overlay Penutup */
-.countdown-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:rgba(92, 64, 51, 0.2);
-    backdrop-filter: blur(40px);
-    opacity: 100%;
-    border: var(--fire) solid 3px;
-    border-radius: 20px;
+/* Container Utama */
+.notice-body {
+    padding: 20px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 100;
-    color: var(--paper);
 }
 
-.lock-icon {
-    font-size: 3rem;
-    color: var(--fire);
-    margin-bottom: 15px;
-}
-
-.timer-display {
-    font-family: var(--font-logo); /* Gunakan font Lambada */
-    font-size: 2.5rem;
-    color: var(--paper);
-    text-shadow: 0 0 50px var(--dark);
-    letter-spacing: 2px;
-}
-
-/* Efek saat konten masih terkunci */
-.lock-content.is-locked {
-    pointer-events: none; /* Tidak bisa diklik */
-    user-select: none;    /* Tidak bisa di-copy */
-}
-
-/* Saat section sedang terkunci */
-.lock-wrapper.is-locked {
-    height: 300px; /* Paksa tinggi section jadi pendek */
-    overflow: hidden; /* Pastikan konten yang panjang tidak keluar */
+/* Grid Wrapper */
+.notice-grid-rundown {
     display: flex;
-    align-items: center;
-    justify-content: center;/* Agar saat terbuka, transisinya mulus */
+    gap: 10px;
 }
 
-/* Saat kunci terbuka (lewat JavaScript) */
-.lock-wrapper:not(.is-locked) {
-    height: auto; /* Ukuran kembali normal sesuai isi konten */
-    padding-bottom: 50px;
+/* Item Wrapper */
+.rd-items {
+    perspective: 10px;
+}
+
+/* Tombol Rundown Utama */
+.btn-rd {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    
+    /* Gradasi Biru Komadiksi */
+    background: linear-gradient(135deg, var(--dark) 100%);
+    color: var(--paper);
+    
+    text-decoration: none;
+    font-family: var(--font-logo);
+    font-weight: normal;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    
+    border-radius: 50px; /* Lonjong elegan */
+    border: 2px solid transparent;
+    
+    /* Bayangan Halus */
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek Hover */
+.btn-rd:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.4);
+    background: linear-gradient(135deg, var(--fire) 100%);
+    border-color: #ffcc00; /* Aksen kuning saat hover */
+}
+
+/* Styling Teks */
+.btn-rd span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Styling Ikon (FontAwesome) */
+.btn-rd i {
+    transition: transform 0.3s ease;
+}
+
+.btn-rd:hover i {
+    transform: translate(2px, -2px); /* Efek panah melompat sedikit */
+    color: #ffcc00;
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 480px) {
+    .btn-rd {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
 }
