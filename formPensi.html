@@ -32,6 +32,7 @@
 
         <button type="submit" id="btn-submit">Kirim</button>
     </form>
+
     <hr>
         <h3>Daftar Pendaftar Pentas Seni</h3>
         <table border="1" id="tabel-data">
@@ -40,6 +41,7 @@
                     <th>Bidang</th>
                     <th>Jenis Pensi</th>
                     <th>waktu</th>
+                    <th>Urutan</th>
                 </tr>
             </thead>
                 <tbody id="isi-tabel">
@@ -88,6 +90,7 @@
                         <td>${item.bidang || '-'}</td>
                         <td>${item.jenis || '-'}</td>
                         <td>${waktu}</td>
+                        <td>${urutan}</td>
                     </tr>`;
                     isiTabel.innerHTML += row;
                 });
