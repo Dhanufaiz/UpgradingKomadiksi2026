@@ -17,3 +17,22 @@
         "footer":[]
     }
 }
+
+
+
+{
+    "index.html": {
+        "Judul" : "Formulir Pendaftaran Studi Banding Komadiksi Smart UNS x Formadiksi UNESA",
+        "Formulir" : {
+            "Nama Lengkap" : [],
+            "Bidang" : ["Sekretaris Umum", "Bendahara Umum", "Pengabdian Masyarakat", "PSDM", "Hubungan Internal", "Media dan Informasi", "Minat dan Bakat"],
+            "Kursi" : ["Kursi A", "Kursi B", "Kursi C", "Kursi D"],
+        },
+        "send-btn":[],
+    },
+    "style.css" {
+        "color-pallette" : ["--amalfi-tile: #2e5aa7", "--sea-breeze: #B6C5FF", "--cream-gelato: #F8E6A0" "--citrus-zest: #FFA62B"],
+        "font-family" : ["League Spartan", "The Season"],
+        "Style" : "Modern glass yellow and blue",
+    }
+}
